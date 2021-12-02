@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button x:Name="_buttonClear" Content="Button" Margin="434,226,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="_buttonClear" Content="Button" Margin="434,226,0,0" VerticalAlignment="Top" Canvas.ZIndex="1"/>
         <Canvas x:Name="_canvas"/>
 
     </Grid>

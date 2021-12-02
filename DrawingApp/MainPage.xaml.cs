@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,7 @@ namespace DrawingApp
             this.InitializeComponent();
             _model = new DrawingModel.DrawModel();
             _drawingAppPresentationModel = new PresentationModel.DrawingAppPresentationModel(_model, _canvas);
+            _canvas.Background = new SolidColorBrush(Colors.White);
             _canvas.PointerPressed += HandleCanvasPointerPressed;
             _canvas.PointerReleased += HandleCanvasPointerReleased;
             _canvas.PointerMoved += HandleCanvasPointerMoved;

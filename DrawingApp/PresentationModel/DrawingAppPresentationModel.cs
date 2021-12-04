@@ -14,12 +14,12 @@ namespace DrawingApp.PresentationModel
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
         DrawModel _model;
-        IGraphics _igraphics;
+        IGraphics _iGraphics;
 
         public DrawingAppPresentationModel(DrawModel model, Canvas canvas)
         {
             this._model = model;
-            _igraphics = new DrawingAppGraphicsAdaptor(canvas);
+            _iGraphics = new DrawingAppGraphicsAdaptor(canvas);
             _model._modelChanged += NotifyModelChanged;
             IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
@@ -43,7 +43,7 @@ namespace DrawingApp.PresentationModel
         public void Draw()
         {
             // 重複使用igraphics物件
-            _model.Draw(_igraphics);
+            _model.Draw(_iGraphics);
         }
 
         // 清除畫布
@@ -53,27 +53,27 @@ namespace DrawingApp.PresentationModel
         }
 
         // 設定 要繪製的圖形
-        public void DrawShpaeType(ShapeType shapeType)
+        public void SetDrawShapeType(ShapeType shapeType)
         {
             _model.DrawShapeType = shapeType;
         }
 
         // 滑鼠點擊
-        public void PointerPressed(double x, double y)
+        public void HandlePointerPressed(double x1, double y1)
         {
-            _model.PointerPressed(x, y);
+            _model.HandlePointerPressed(x1, y1);
         }
 
         // 滑鼠放開
-        public void PointerReleased(double x, double y)
+        public void HandlePointerReleased(double x1, double y1)
         {
-            _model.PointerReleased(x, y);
+            _model.HandlePointerReleased(x1, y1);
         }
 
         // 滑鼠移動
-        public void PointerMoved(double x, double y)
+        public void HandlePointerMoved(double x1, double y1)
         {
-            _model.PointerMoved(x, y);
+            _model.HandlePointerMoved(x1, y1);
         }
 
         // 同步通知

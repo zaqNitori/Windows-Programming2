@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace DrawingModel
 {
-    class DrawModel
+    public class DrawModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
-        List<Ishape> _shapes = new List<Ishape>();
-        Ishape _hint;
+        List<IShape> _shapes = new List<IShape>();
+        IShape _hint;
 
         public DrawModel()
         {
@@ -24,51 +24,51 @@ namespace DrawingModel
         }
 
         // 按下滑鼠
-        public void PointerPressed(double x, double y)
+        public void HandlePointerPressed(double pointX, double pointY)
         {
-            if (x > 0 && y > 0 && DrawShapeType != ShapeType.None)
+            if (pointX > 0 && pointY > 0 && DrawShapeType != ShapeType.None)
             {
-                _firstPointX = x;
-                _firstPointY = y;
-                _hint = BuildShape(x, y);
+                _firstPointX = pointX;
+                _firstPointY = pointY;
+                _hint = BuildShape(pointX, pointY);
                 _isPressed = true;
             }
         }
 
         // 滑鼠移動
-        public void PointerMoved(double x, double y)
+        public void HandlePointerMoved(double pointX, double pointY)
         {
             if (_isPressed)
             {
-                _hint.SetRight(x);
-                _hint.SetBottom(y);
+                _hint.SetRight(pointX);
+                _hint.SetBottom(pointY);
                 NotifyModelChanged();
             }
         }
 
         // 滑鼠放開
-        public void PointerReleased(double x, double y)
+        public void HandlePointerReleased(double pointX, double pointY)
         {
             if (_isPressed)
             {
                 _isPressed = false;
-                Ishape shape = BuildShape(x, y);
+                IShape shape = BuildShape(pointX, pointY);
                 _shapes.Add(shape);
                 NotifyModelChanged();
             }
         }
 
         // 根據選取項目，建立圖形
-        private Ishape BuildShape(double x, double y)
+        private IShape BuildShape(double pointX, double pointY)
         {
-            Ishape shape = null;
+            IShape shape = null;
             switch (DrawShapeType)
             {
                 case ShapeType.Rectangle:
-                    shape = new Rectangle(_firstPointX, _firstPointY, x, y);
+                    shape = new Rectangle(_firstPointX, _firstPointY, pointX, pointY);
                     break;
                 case ShapeType.Ellipse:
-                    shape = new Ellipse(_firstPointX, _firstPointY, x, y);
+                    shape = new Ellipse(_firstPointX, _firstPointY, pointX, pointY);
                     break;
             }
             return shape;

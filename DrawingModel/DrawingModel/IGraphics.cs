@@ -1,6 +1,6 @@
 ﻿namespace DrawingModel
 {
-    interface IGraphics
+    public interface IGraphics
     {
         /// <summary>
         /// 清除畫布

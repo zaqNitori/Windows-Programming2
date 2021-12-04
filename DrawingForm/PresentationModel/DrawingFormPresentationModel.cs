@@ -4,13 +4,13 @@ using DrawingModel.Shape;
 
 namespace DrawingForm.PresentationModel
 {
-    class DrawingFormPresentationModel
+    public class DrawingFormPresentationModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
         DrawModel _model;
 
-        public DrawingFormPresentationModel(DrawModel model, Control canvas)
+        public DrawingFormPresentationModel(DrawModel model)
         {
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
@@ -48,27 +48,27 @@ namespace DrawingForm.PresentationModel
         }
 
         // 設定 要繪製的圖形
-        public void DrawShpaeType(ShapeType shapeType)
+        public void SetDrawShapeType(ShapeType shapeType)
         {
             _model.DrawShapeType = shapeType;
         }
 
         // 滑鼠點擊
-        public void PointerPressed(int x, int y)
+        public void HandlePointerPressed(int x1, int y1)
         {
-            _model.PointerPressed(x, y);
+            _model.HandlePointerPressed(x1, y1);
         }
 
         // 滑鼠放開
-        public void PointerReleased(int x, int y)
+        public void HandlePointerReleased(int x1, int y1)
         {
-            _model.PointerReleased(x, y);
+            _model.HandlePointerReleased(x1, y1);
         }
 
         // 滑鼠移動
-        public void PointerMoved(int x, int y)
+        public void HandlePointerMoved(int x1, int y1)
         {
-            _model.PointerMoved(x, y);
+            _model.HandlePointerMoved(x1, y1);
         }
 
         // 同步通知

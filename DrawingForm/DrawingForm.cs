@@ -46,7 +46,7 @@ namespace DrawingForm
         private void InitializePresentationModel()
         {
             _model = new DrawModel();
-            _presentationModel = new DrawingFormPresentationModel(_model, _canvas);
+            _presentationModel = new DrawingFormPresentationModel(_model);
             _presentationModel._modelChanged += HandleModelChanged;
         }
 
@@ -70,7 +70,7 @@ namespace DrawingForm
         // 處理 清除按鈕點擊 事件
         public void HandleDrawRectangleButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.DrawShpaeType(ShapeType.Rectangle);
+            _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             RefreshButtonStatus();
@@ -79,7 +79,7 @@ namespace DrawingForm
         // 處理 清除按鈕點擊 事件
         public void HandleDrawEllipseButtonClick(object sender, EventArgs e)
         {
-            _presentationModel.DrawShpaeType(ShapeType.Ellipse);
+            _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             RefreshButtonStatus();
@@ -88,19 +88,19 @@ namespace DrawingForm
         // 處理畫布 滑鼠點擊事件
         public void HandleCanvasPointerPressed(object sender, MouseEventArgs e)
         {
-            _presentationModel.PointerPressed(e.X, e.Y);
+            _presentationModel.HandlePointerPressed(e.X, e.Y);
         }
 
         // 處理畫布 滑鼠放開事件
         public void HandleCanvasPointerReleased(object sender, MouseEventArgs e)
         {
-            _presentationModel.PointerReleased(e.X, e.Y);
+            _presentationModel.HandlePointerReleased(e.X, e.Y);
         }
 
         // 處理畫布 滑鼠移動事件
         public void HandleCanvasPointerMoved(object sender, MouseEventArgs e)
         {
-            _presentationModel.PointerMoved(e.X, e.Y);
+            _presentationModel.HandlePointerMoved(e.X, e.Y);
         }
 
         // 處理畫布繪製事件

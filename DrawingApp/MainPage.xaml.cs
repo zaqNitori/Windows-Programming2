@@ -26,7 +26,6 @@ namespace DrawingApp
         DrawingModel.DrawModel _model;
         PresentationModel.DrawingAppPresentationModel _presentationModel;
 
-
         public MainPage()
         {
             InitializeComponent();
@@ -88,7 +87,7 @@ namespace DrawingApp
         // 處理 清除按鈕點擊 事件
         public void HandleDrawRectangleButtonClick(object sender, RoutedEventArgs e)
         {
-            _presentationModel.DrawShpaeType(ShapeType.Rectangle);
+            _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             RefreshButtonStatus();
@@ -97,7 +96,7 @@ namespace DrawingApp
         // 處理 清除按鈕點擊 事件
         public void HandleDrawEllipseButtonClick(object sender, RoutedEventArgs e)
         {
-            _presentationModel.DrawShpaeType(ShapeType.Ellipse);
+            _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             RefreshButtonStatus();
@@ -106,19 +105,19 @@ namespace DrawingApp
         // 處理畫布 滑鼠點擊事件
         public void HandleCanvasPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            _presentationModel.PointerPressed(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerPressed(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理畫布 滑鼠放開事件
         public void HandleCanvasPointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            _presentationModel.PointerReleased(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerReleased(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理畫布 滑鼠移動事件
         public void HandleCanvasPointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            _presentationModel.PointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理 同步通知

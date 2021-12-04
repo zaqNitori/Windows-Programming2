@@ -2,7 +2,7 @@
 
 namespace DrawingModel.Shape
 {
-    public class Rectangle : Ishape
+    public class Rectangle : IShape
     {
 
         public Rectangle(double x1, double y1, double x2, double y2)
@@ -34,7 +34,7 @@ namespace DrawingModel.Shape
         }
 
         // 繪圖
-        void Ishape.Draw(IGraphics graphics)
+        public void Draw(IGraphics graphics)
         {
             graphics.DrawRectangle(X1, Y1, X2, Y2);
         }

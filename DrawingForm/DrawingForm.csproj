@@ -55,6 +55,9 @@
     <Compile Include="..\DrawingModel\DrawingModel\Line.cs">
       <Link>Model\Line.cs</Link>
     </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Shape\ShapeType.cs">
+      <Link>Model\ShapeType.cs</Link>
+    </Compile>
     <Compile Include="DoubleBufferedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -68,6 +71,10 @@
     <Compile Include="PresentationModel\DrawingFormPresentationModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartUp.cs" />
+    <EmbeddedResource Include="DrawingForm.resx">
+      <DependentUpon>DrawingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

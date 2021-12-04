@@ -137,13 +137,15 @@
     <Compile Include="..\DrawingModel\DrawingModel\Shape\Rectangle.cs">
       <Link>Model\Rectangle.cs</Link>
     </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Shape\ShapeType.cs">
+      <Link>Model\ShapeType.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ShapeType.cs" />
     <Compile Include="PresentationModel\DrawingAppPresentationModel.cs" />
     <Compile Include="PresentationModel\DrawingAppGraphicsAdaptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

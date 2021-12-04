@@ -55,7 +55,25 @@ namespace DrawingApp.PresentationModel
         // 設定 要繪製的圖形
         public void DrawShpaeType(ShapeType shapeType)
         {
-            //do nothing
+            _model.DrawShapeType = shapeType;
+        }
+
+        // 滑鼠點擊
+        public void PointerPressed(double x, double y)
+        {
+            _model.PointerPressed(x, y);
+        }
+
+        // 滑鼠放開
+        public void PointerReleased(double x, double y)
+        {
+            _model.PointerReleased(x, y);
+        }
+
+        // 滑鼠移動
+        public void PointerMoved(double x, double y)
+        {
+            _model.PointerMoved(x, y);
         }
 
         // 同步通知

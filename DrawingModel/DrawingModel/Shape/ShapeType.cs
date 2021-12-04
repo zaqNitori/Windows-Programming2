@@ -8,6 +8,7 @@ namespace DrawingModel.Shape
 {
     public enum ShapeType
     {
+        None,
         Line,
         Rectangle,
         Ellipse

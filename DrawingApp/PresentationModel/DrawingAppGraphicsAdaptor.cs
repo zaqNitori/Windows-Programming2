@@ -43,7 +43,7 @@ namespace DrawingApp.PresentationModel
         public void DrawRectangle(double x1, double y1, double x2, double y2)
         {
             Rectangle rectangle = new Rectangle();
-            InitializeShape(rectangle, (int)x1, (int)y1, (int)x2, (int)y2, new SolidColorBrush(Colors.Blue));
+            InitializeShape(rectangle, x1, y1, x2, y2, new SolidColorBrush(Colors.Blue));
             rectangle.Stroke = new SolidColorBrush(Colors.Black);
             _canvas.Children.Add(rectangle);
 
@@ -54,21 +54,37 @@ namespace DrawingApp.PresentationModel
         /// </summary>
         public void DrawEllipse(double x1, double y1, double x2, double y2)
         {
-            Rectangle rectangle = new Rectangle();
-            InitializeShape(rectangle, (int)x1, (int)y1, (int)x2, (int)y2, new SolidColorBrush(Colors.Blue));
+            Ellipse ellipse = new Ellipse();
+            InitializeShape(ellipse, x1, y1, x2, y2, new SolidColorBrush(Colors.Blue));
+            ellipse.Stroke = new SolidColorBrush(Colors.Black);
+            _canvas.Children.Add(ellipse);
         }
 
         /// <summary>
         /// 初始化圖形
         /// </summary>
-        private Shape InitializeShape(Shape shape, int left, int top, int right, int bottom, SolidColorBrush fillColorBrush)
+        private Shape InitializeShape(Shape shape, double x1, double y1, double x2, double y2, SolidColorBrush fillColorBrush)
         {
-            shape.Margin = new Thickness(left, top, right, bottom);
-            shape.Width = right - left;
-            shape.Height = bottom - top;
+            RefactorMarginPoint(ref x1, ref y1, ref x2, ref y2);
+            shape.Margin = new Thickness(x1, y1, x2, y2);
+            shape.Width = x2 - x1;
+            shape.Height = y2 - y1;
             shape.Fill = fillColorBrush;
             return shape;
         }
 
+        // 判斷座標是否需要轉換
+        private void RefactorMarginPoint(ref double x1, ref double y1, ref double x2, ref double y2)
+        {
+            if (x1 > x2)
+            {
+                Common.Swap<double>(ref x1, ref x2);
+            }
+
+            if (y1 > y2)
+            {
+                Common.Swap<double>(ref y1, ref y2);
+            }
+        }
     }
 }

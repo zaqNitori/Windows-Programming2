@@ -13,6 +13,11 @@ namespace DrawingModel
         List<Ishape> _shapes = new List<Ishape>();
         Ishape _hint;
 
+        public DrawModel()
+        {
+            DrawShapeType = ShapeType.None;
+        }
+
         public ShapeType DrawShapeType
         {
             get; set;
@@ -21,7 +26,7 @@ namespace DrawingModel
         // 按下滑鼠
         public void PointerPressed(double x, double y)
         {
-            if (x > 0 && y > 0)
+            if (x > 0 && y > 0 && DrawShapeType != ShapeType.None)
             {
                 _firstPointX = x;
                 _firstPointY = y;
@@ -56,20 +61,24 @@ namespace DrawingModel
         // 根據選取項目，建立圖形
         private Ishape BuildShape(double x, double y)
         {
-            if (DrawShapeType.Equals(ShapeType.Rectangle))
+            Ishape shape = null;
+            switch (DrawShapeType)
             {
-                return new Rectangle(_firstPointX, _firstPointY, x, y);
+                case ShapeType.Rectangle:
+                    shape = new Rectangle(_firstPointX, _firstPointY, x, y);
+                    break;
+                case ShapeType.Ellipse:
+                    shape = new Ellipse(_firstPointX, _firstPointY, x, y);
+                    break;
             }
-            else
-            {
-                return new Ellipse(_firstPointX, _firstPointY, x, y);
-            }
+            return shape;
         }
 
         // 清空畫面
         public void Clear()
         {
             _isPressed = false;
+            DrawShapeType = ShapeType.None;
             _shapes.Clear();
             NotifyModelChanged();
         }

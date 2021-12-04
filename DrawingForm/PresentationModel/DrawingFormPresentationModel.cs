@@ -50,7 +50,7 @@ namespace DrawingForm.PresentationModel
         // 設定 要繪製的圖形
         public void DrawShpaeType(ShapeType shapeType)
         {
-            //do nothing
+            _model.DrawShapeType = shapeType;
         }
 
         // 滑鼠點擊

@@ -43,10 +43,19 @@ namespace DrawingApp.PresentationModel
         public void DrawRectangle(double x1, double y1, double x2, double y2)
         {
             Rectangle rectangle = new Rectangle();
-            InitializeShape(rectangle, 0, 0, 150, 100, new SolidColorBrush(Colors.Blue));
+            InitializeShape(rectangle, (int)x1, (int)y1, (int)x2, (int)y2, new SolidColorBrush(Colors.Blue));
             rectangle.Stroke = new SolidColorBrush(Colors.Black);
             _canvas.Children.Add(rectangle);
 
+        }
+
+        // <summary>
+        /// 畫圓
+        /// </summary>
+        public void DrawEllipse(double x1, double y1, double x2, double y2)
+        {
+            Rectangle rectangle = new Rectangle();
+            InitializeShape(rectangle, (int)x1, (int)y1, (int)x2, (int)y2, new SolidColorBrush(Colors.Blue));
         }
 
         /// <summary>
@@ -55,8 +64,8 @@ namespace DrawingApp.PresentationModel
         private Shape InitializeShape(Shape shape, int left, int top, int right, int bottom, SolidColorBrush fillColorBrush)
         {
             shape.Margin = new Thickness(left, top, right, bottom);
-            shape.Width = right;
-            shape.Height = bottom;
+            shape.Width = right - left;
+            shape.Height = bottom - top;
             shape.Fill = fillColorBrush;
             return shape;
         }

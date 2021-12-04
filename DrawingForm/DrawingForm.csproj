@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DrawingModel\DrawingModel\Common.cs">
+      <Link>Model\Common.cs</Link>
+    </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\DrawModel.cs">
       <Link>Model\DrawModel.cs</Link>
     </Compile>
@@ -54,6 +57,15 @@
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Line.cs">
       <Link>Model\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Shape\Ellipse.cs">
+      <Link>Model\Ellipse.cs</Link>
+    </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Shape\Interface\Ishape.cs">
+      <Link>Model\Ishape.cs</Link>
+    </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Shape\Rectangle.cs">
+      <Link>Model\Rectangle.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\ShapeType.cs">
       <Link>Model\ShapeType.cs</Link>

@@ -106,22 +106,19 @@ namespace DrawingApp
         // 處理畫布 滑鼠點擊事件
         public void HandleCanvasPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerPressed(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _model.PointerPressed(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理畫布 滑鼠放開事件
         public void HandleCanvasPointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerReleased(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _model.PointerReleased(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理畫布 滑鼠移動事件
         public void HandleCanvasPointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerMoved(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _model.PointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
         // 處理 同步通知

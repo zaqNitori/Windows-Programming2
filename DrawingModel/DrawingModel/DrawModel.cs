@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DrawingModel.Shape;
+using System.Collections.Generic;
 
 namespace DrawingModel
 {
@@ -9,80 +10,81 @@ namespace DrawingModel
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
-        List<Line> _lines = new List<Line>();
-        Line _hint = new Line();
+        List<Ishape> _shapes = new List<Ishape>();
+        Ishape _hint;
 
-        /// <summary>
-        /// 按下滑鼠
-        /// </summary>
+        public ShapeType DrawShapeType
+        {
+            get; set;
+        }
+
+        // 按下滑鼠
         public void PointerPressed(double x, double y)
         {
             if (x > 0 && y > 0)
             {
                 _firstPointX = x;
                 _firstPointY = y;
-                _hint.x1 = _firstPointX;
-                _hint.y1 = _firstPointY;
+                _hint = BuildShape(x, y);
                 _isPressed = true;
             }
         }
 
-        /// <summary>
-        /// 滑鼠移動
-        /// </summary>
+        // 滑鼠移動
         public void PointerMoved(double x, double y)
         {
             if (_isPressed)
             {
-                _hint.x2 = x;
-                _hint.y2 = y;
+                _hint.SetRight(x);
+                _hint.SetBottom(y);
                 NotifyModelChanged();
             }
         }
 
-        /// <summary>
-        /// 滑鼠放開
-        /// </summary>
+        // 滑鼠放開
         public void PointerReleased(double x, double y)
         {
             if (_isPressed)
             {
                 _isPressed = false;
-                Line hint = new Line();
-                hint.x1 = _firstPointX;
-                hint.y1 = _firstPointY;
-                hint.x2 = x;
-                hint.y2 = y;
-                _lines.Add(hint);
+                Ishape shape = BuildShape(x, y);
+                _shapes.Add(shape);
                 NotifyModelChanged();
             }
         }
 
-        /// <summary>
-        /// 清空畫面
-        /// </summary>
+        // 根據選取項目，建立圖形
+        private Ishape BuildShape(double x, double y)
+        {
+            if (DrawShapeType.Equals(ShapeType.Rectangle))
+            {
+                return new Rectangle(_firstPointX, _firstPointY, x, y);
+            }
+            else
+            {
+                return new Ellipse(_firstPointX, _firstPointY, x, y);
+            }
+        }
+
+        // 清空畫面
         public void Clear()
         {
             _isPressed = false;
-            _lines.Clear();
+            _shapes.Clear();
             NotifyModelChanged();
         }
 
-        /// <summary>
-        /// 繪圖
-        /// </summary>
+        // 繪圖
         public void Draw(IGraphics graphics)
         {
             graphics.ClearAll();
-            foreach (Line aLine in _lines)
-                aLine.Draw(graphics);
+            foreach (var shape in _shapes)
+                shape.Draw(graphics);
             if (_isPressed)
                 _hint.Draw(graphics);
         }
 
-        /// <summary>
-        /// 同步通知
-        /// </summary>
+        // 同步通知
         void NotifyModelChanged()
         {
             if (_modelChanged != null)

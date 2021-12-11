@@ -125,6 +125,9 @@
     <Compile Include="..\DrawingModel\DrawingModel\IGraphics.cs">
       <Link>Model\IGraphics.cs</Link>
     </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\ShapeFactory.cs">
+      <Link>Model\ShapeFactory.cs</Link>
+    </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\Ellipse.cs">
       <Link>Model\Ellipse.cs</Link>
     </Compile>

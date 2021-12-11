@@ -2,7 +2,7 @@
 
 namespace DrawingModel.Shape
 {
-    interface IShape
+    public interface IShape
     {
         // 繪製圖形
         void Draw(IGraphics graphics);

@@ -7,6 +7,7 @@ namespace DrawingModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+        ShapeFactory _shapeFactory;
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
@@ -15,22 +16,23 @@ namespace DrawingModel
 
         public DrawModel()
         {
-            DrawShapeType = ShapeType.None;
+            _shapeFactory = new ShapeFactory(ShapeType.None);
         }
 
-        public ShapeType DrawShapeType
+        //設定繪製圖形
+        public void SetShapeType(ShapeType shapeType)
         {
-            get; set;
+            _shapeFactory.DrawShapeType = shapeType;
         }
 
         // 按下滑鼠
         public void HandlePointerPressed(double pointX, double pointY)
         {
-            if (pointX > 0 && pointY > 0 && DrawShapeType != ShapeType.None)
+            if (pointX > 0 && pointY > 0 && _shapeFactory.DrawShapeType != ShapeType.None)
             {
                 _firstPointX = pointX;
                 _firstPointY = pointY;
-                _hint = BuildShape(pointX, pointY);
+                _hint = _shapeFactory.BuildShape(pointX, pointY);
                 _isPressed = true;
             }
         }
@@ -52,7 +54,7 @@ namespace DrawingModel
             if (_isPressed)
             {
                 _isPressed = false;
-                IShape shape = BuildShape(pointX, pointY);
+                IShape shape = _shapeFactory.BuildShape(_firstPointX, _firstPointY, pointX, pointY);
                 _shapes.Add(shape);
                 NotifyModelChanged();
             }
@@ -62,15 +64,15 @@ namespace DrawingModel
         private IShape BuildShape(double pointX, double pointY)
         {
             IShape shape = null;
-            switch (DrawShapeType)
-            {
-                case ShapeType.Rectangle:
-                    shape = new Rectangle(_firstPointX, _firstPointY, pointX, pointY);
-                    break;
-                case ShapeType.Ellipse:
-                    shape = new Ellipse(_firstPointX, _firstPointY, pointX, pointY);
-                    break;
-            }
+            //switch (DrawShapeType)
+            //{
+            //    case ShapeType.Rectangle:
+            //        shape = new Rectangle(_firstPointX, _firstPointY, pointX, pointY);
+            //        break;
+            //    case ShapeType.Ellipse:
+            //        shape = new Ellipse(_firstPointX, _firstPointY, pointX, pointY);
+            //        break;
+            //}
             return shape;
         }
 
@@ -78,7 +80,7 @@ namespace DrawingModel
         public void Clear()
         {
             _isPressed = false;
-            DrawShapeType = ShapeType.None;
+            _shapeFactory.DrawShapeType = ShapeType.None;
             _shapes.Clear();
             NotifyModelChanged();
         }

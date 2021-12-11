@@ -15,17 +15,13 @@ namespace DrawingApp.PresentationModel
             this._canvas = canvas;
         }
 
-        /// <summary>
-        /// 清除畫布
-        /// </summary>
+        // 清除畫布
         public void ClearAll()
         {
             _canvas.Children.Clear();
         }
 
-        /// <summary>
-        /// 畫線
-        /// </summary>
+        // 畫線
         public void DrawLine(double x1, double y1, double x2, double y2)
         {
             Windows.UI.Xaml.Shapes.Line line = new Windows.UI.Xaml.Shapes.Line();
@@ -37,29 +33,34 @@ namespace DrawingApp.PresentationModel
             _canvas.Children.Add(line);
         }
 
-        /// <summary>
-        /// 畫矩形
-        /// </summary>
+        // 畫矩形
         public void DrawRectangle(double x1, double y1, double x2, double y2)
         {
             Rectangle rectangle = new Rectangle();
-            InitializeShape(rectangle, 0, 0, 150, 100, new SolidColorBrush(Colors.Blue));
-            rectangle.Stroke = new SolidColorBrush(Colors.Black);
+            InitializeShape(rectangle, x1, y1, x2, y2);
             _canvas.Children.Add(rectangle);
 
         }
 
-        /// <summary>
-        /// 初始化圖形
-        /// </summary>
-        private Shape InitializeShape(Shape shape, int left, int top, int right, int bottom, SolidColorBrush fillColorBrush)
+        // 畫圓
+        public void DrawEllipse(double x1, double y1, double x2, double y2)
         {
-            shape.Margin = new Thickness(left, top, right, bottom);
-            shape.Width = right;
-            shape.Height = bottom;
-            shape.Fill = fillColorBrush;
-            return shape;
+            Ellipse ellipse = new Ellipse();
+            InitializeShape(ellipse, x1, y1, x2, y2);
+            _canvas.Children.Add(ellipse);
         }
 
+        // 初始化圖形
+        private Shape InitializeShape(Shape shape, double x1, double y1, double x2, double y2)
+        {
+            Common.ResetMarginPoint(ref x1, ref y1, ref x2, ref y2);
+            shape.Margin = new Thickness(x1, y1, x2, y2);
+            shape.Width = x2 - x1;
+            shape.Height = y2 - y1;
+            shape.Stroke = new SolidColorBrush(Colors.Black);
+            shape.Fill = new SolidColorBrush(Colors.Blue);
+            return shape;
+        }
+        
     }
 }

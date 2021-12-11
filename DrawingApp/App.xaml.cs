@@ -22,6 +22,8 @@ namespace DrawingApp
     /// </summary>
     sealed partial class App : Application
     {
+        private const string LOAD_PAGE_FAIL = "Failed to load Page ";
+
         /// <summary>
         /// 初始化單一應用程式物件。這是第一行執行之撰寫程式碼，
         /// 而且其邏輯相當於 main() 或 WinMain()。
@@ -29,7 +31,7 @@ namespace DrawingApp
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += DoOnSuspending;
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace DrawingApp
                 // 建立框架做為巡覽內容，並巡覽至第一頁
                 rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.NavigationFailed += DoOnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -78,9 +80,9 @@ namespace DrawingApp
         /// </summary>
         /// <param name="sender">導致巡覽失敗的框架</param>
         /// <param name="e">有關巡覽失敗的詳細資料</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        void DoOnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+            throw new Exception(LOAD_PAGE_FAIL + e.SourcePageType.FullName);
         }
 
         /// <summary>
@@ -90,7 +92,7 @@ namespace DrawingApp
         /// </summary>
         /// <param name="sender">暫停之要求的來源。</param>
         /// <param name="e">有關暫停之要求的詳細資料。</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private void DoOnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 儲存應用程式狀態，並停止任何背景活動

@@ -1,88 +1,86 @@
-﻿using System.Collections.Generic;
+﻿using DrawingModel.Shape;
+using System.Collections.Generic;
 
 namespace DrawingModel
 {
-    class DrawModel
+    public class DrawModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+        ShapeFactory _shapeFactory;
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
-        List<Line> _lines = new List<Line>();
-        Line _hint = new Line();
+        List<IShape> _shapes = new List<IShape>();
+        IShape _hint;
 
-        /// <summary>
-        /// 按下滑鼠
-        /// </summary>
-        public void PointerPressed(double x, double y)
+        public DrawModel()
         {
-            if (x > 0 && y > 0)
+            _shapeFactory = new ShapeFactory(ShapeType.None);
+        }
+
+        //設定繪製圖形
+        public void SetShapeType(ShapeType shapeType)
+        {
+            _shapeFactory.DrawShapeType = shapeType;
+        }
+
+        // 按下滑鼠
+        public void HandlePointerPressed(double pointX, double pointY)
+        {
+            bool isShape = _shapeFactory.DrawShapeType != ShapeType.None;
+            if (pointX > 0 && pointY > 0 && isShape)
             {
-                _firstPointX = x;
-                _firstPointY = y;
-                _hint.x1 = _firstPointX;
-                _hint.y1 = _firstPointY;
+                _firstPointX = pointX;
+                _firstPointY = pointY;
+                _hint = _shapeFactory.BuildShape(pointX, pointY);
                 _isPressed = true;
             }
         }
 
-        /// <summary>
-        /// 滑鼠移動
-        /// </summary>
-        public void PointerMoved(double x, double y)
+        // 滑鼠移動
+        public void HandlePointerMoved(double pointX, double pointY)
         {
             if (_isPressed)
             {
-                _hint.x2 = x;
-                _hint.y2 = y;
+                _hint.SetRight(pointX);
+                _hint.SetBottom(pointY);
                 NotifyModelChanged();
             }
         }
 
-        /// <summary>
-        /// 滑鼠放開
-        /// </summary>
-        public void PointerReleased(double x, double y)
+        // 滑鼠放開
+        public void HandlePointerReleased(double pointX, double pointY)
         {
             if (_isPressed)
             {
                 _isPressed = false;
-                Line hint = new Line();
-                hint.x1 = _firstPointX;
-                hint.y1 = _firstPointY;
-                hint.x2 = x;
-                hint.y2 = y;
-                _lines.Add(hint);
+                IShape shape = _shapeFactory.BuildShape(_firstPointX, _firstPointY, pointX, pointY);
+                _shapes.Add(shape);
                 NotifyModelChanged();
             }
         }
 
-        /// <summary>
-        /// 清空畫面
-        /// </summary>
+        // 清空畫面
         public void Clear()
         {
             _isPressed = false;
-            _lines.Clear();
+            _shapeFactory.DrawShapeType = ShapeType.None;
+            _shapes.Clear();
             NotifyModelChanged();
         }
 
-        /// <summary>
-        /// 繪圖
-        /// </summary>
+        // 繪圖
         public void Draw(IGraphics graphics)
         {
             graphics.ClearAll();
-            foreach (Line aLine in _lines)
-                aLine.Draw(graphics);
+            foreach (var shape in _shapes)
+                shape.Draw(graphics);
             if (_isPressed)
                 _hint.Draw(graphics);
         }
 
-        /// <summary>
-        /// 同步通知
-        /// </summary>
+        // 同步通知
         void NotifyModelChanged()
         {
             if (_modelChanged != null)

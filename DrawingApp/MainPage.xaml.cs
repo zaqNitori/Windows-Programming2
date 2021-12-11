@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DrawingModel.Shape;
 
 // 空白頁項目範本已記錄在 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x404
 
@@ -23,20 +24,46 @@ namespace DrawingApp
     public sealed partial class MainPage : Page
     {
         DrawingModel.DrawModel _model;
-        PresentationModel.DrawingAppPresentationModel _drawingAppPresentationModel;
-
+        PresentationModel.DrawingAppPresentationModel _presentationModel;
 
         public MainPage()
         {
-            this.InitializeComponent();
-            _model = new DrawingModel.DrawModel();
-            _drawingAppPresentationModel = new PresentationModel.DrawingAppPresentationModel(_model, _canvas);
-            _canvas.Background = new SolidColorBrush(Colors.White);
+            InitializeComponent();
+            InitializeCanvas();
+            InitializeButton();
+            InitializePresentationModel();
+        }
+
+        // 初始化 畫布
+        private void InitializeCanvas()
+        {
             _canvas.PointerPressed += HandleCanvasPointerPressed;
             _canvas.PointerReleased += HandleCanvasPointerReleased;
             _canvas.PointerMoved += HandleCanvasPointerMoved;
+        }
+
+        // 初始化 Button
+        private void InitializeButton()
+        {
             _buttonClear.Click += HandleClearButtonClick;
-            _model._modelChanged += HandleModelChanged;
+            _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
+            _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+        }
+
+        // 初始化 PresentationModel
+        private void InitializePresentationModel()
+        {
+            _model = new DrawingModel.DrawModel();
+            _presentationModel = new PresentationModel.DrawingAppPresentationModel(_model, _canvas);
+            _presentationModel._modelChanged += HandleModelChanged;
+        }
+
+        // 重置畫面按鈕狀態
+        private void RefreshButtonStatus()
+        {
+            _buttonClear.IsEnabled = _presentationModel.IsButtonClearEnabled;
+            _buttonDrawEllipse.IsEnabled = _presentationModel.IsButtonDrawEllipseEnabled;
+            _buttonDrawRectangle.IsEnabled = _presentationModel.IsButtonDrawRectangleEnabled;
         }
 
         /// <summary>
@@ -48,47 +75,55 @@ namespace DrawingApp
         {
         }
 
-        /// <summary>
-        /// 處理畫面清除事件
-        /// </summary>
+        // 處理畫面清除事件
         private void HandleClearButtonClick(object sender, RoutedEventArgs e)
         {
             _model.Clear();
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            RefreshButtonStatus();
         }
 
-        /// <summary>
-        /// 處理畫布 滑鼠點擊事件
-        /// </summary>
+        // 處理 清除按鈕點擊 事件
+        public void HandleDrawRectangleButtonClick(object sender, RoutedEventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
+            _presentationModel.IsButtonDrawRectangleEnabled = false;
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            RefreshButtonStatus();
+        }
+
+        // 處理 清除按鈕點擊 事件
+        public void HandleDrawEllipseButtonClick(object sender, RoutedEventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
+            _presentationModel.IsButtonDrawEllipseEnabled = false;
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
+            RefreshButtonStatus();
+        }
+
+        // 處理畫布 滑鼠點擊事件
         public void HandleCanvasPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerPressed(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerPressed(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
-        /// <summary>
-        /// 處理畫布 滑鼠放開事件
-        /// </summary>
+        // 處理畫布 滑鼠放開事件
         public void HandleCanvasPointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerReleased(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerReleased(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
-        /// <summary>
-        /// 處理畫布 滑鼠移動事件
-        /// </summary>
+        // 處理畫布 滑鼠移動事件
         public void HandleCanvasPointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            _model.PointerMoved(e.GetCurrentPoint(_canvas).Position.X,
-           e.GetCurrentPoint(_canvas).Position.Y);
+            _presentationModel.HandlePointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
-        /// <summary>
-        /// 處理 同步通知
-        /// </summary>
+        // 處理 同步通知
         public void HandleModelChanged()
         {
-            _drawingAppPresentationModel.Draw();
+            _presentationModel.Draw();
         }
 
     }

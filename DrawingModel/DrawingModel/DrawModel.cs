@@ -28,7 +28,8 @@ namespace DrawingModel
         // 按下滑鼠
         public void HandlePointerPressed(double pointX, double pointY)
         {
-            if (pointX > 0 && pointY > 0 && _shapeFactory.DrawShapeType != ShapeType.None)
+            bool isShape = _shapeFactory.DrawShapeType != ShapeType.None;
+            if (pointX > 0 && pointY > 0 && isShape)
             {
                 _firstPointX = pointX;
                 _firstPointY = pointY;
@@ -58,22 +59,6 @@ namespace DrawingModel
                 _shapes.Add(shape);
                 NotifyModelChanged();
             }
-        }
-
-        // 根據選取項目，建立圖形
-        private IShape BuildShape(double pointX, double pointY)
-        {
-            IShape shape = null;
-            //switch (DrawShapeType)
-            //{
-            //    case ShapeType.Rectangle:
-            //        shape = new Rectangle(_firstPointX, _firstPointY, pointX, pointY);
-            //        break;
-            //    case ShapeType.Ellipse:
-            //        shape = new Ellipse(_firstPointX, _firstPointY, pointX, pointY);
-            //        break;
-            //}
-            return shape;
         }
 
         // 清空畫面

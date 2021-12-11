@@ -38,7 +38,7 @@ namespace DrawingModel
             var type = typeof(IShape).Assembly
                                     .GetTypes()
                                     .Single(child => child.Name == shape);
-            var instance = (IShape)Activator.CreateInstance(type, new object[] { x1, y1, x2, y2});
+            var instance = (IShape)Activator.CreateInstance(type, new object[] { x1, y1, x2, y2 });
             return instance;
         }
 

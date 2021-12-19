@@ -59,8 +59,8 @@ namespace DrawingForm
             _buttonClear.Enabled = _presentationModel.IsButtonClearEnabled;
             _buttonDrawEllipse.Enabled = _presentationModel.IsButtonDrawEllipseEnabled;
             _buttonDrawRectangle.Enabled = _presentationModel.IsButtonDrawRectangleEnabled;
-            //_buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
-            //_buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
+            _buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
+            _buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
         }
 
         // 處理 清除按鈕點擊 事件
@@ -132,6 +132,7 @@ namespace DrawingForm
         public void HandleModelChanged()
         {
             Invalidate(true);
+            RefreshButtonStatus();
         }
 
     }

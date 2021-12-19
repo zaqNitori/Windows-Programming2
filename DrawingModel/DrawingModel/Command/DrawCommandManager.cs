@@ -17,6 +17,22 @@ namespace DrawingModel.Command
             _undoCommand = new Stack<ICommand>();
         }
 
+        public bool IsButtonUndoEnabled
+        {
+            get
+            {
+                return _undoCommand.Count > 0;
+            }
+        }
+
+        public bool IsButtonRedoEnabled
+        {
+            get
+            {
+                return _redoCommand.Count > 0;
+            }
+        }
+
         //Save Command And Execute Operation
         public void Execute(DrawCommand drawCommand)
         {
@@ -45,6 +61,13 @@ namespace DrawingModel.Command
             }
             _redoCommand.Push(_undoCommand.Peek());
             _undoCommand.Pop().UnExecute();
+        }
+
+        //Clear All stack
+        public void Clear()
+        {
+            _redoCommand.Clear();
+            _undoCommand.Clear();
         }
 
     }

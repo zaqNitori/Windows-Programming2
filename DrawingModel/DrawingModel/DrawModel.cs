@@ -25,6 +25,22 @@ namespace DrawingModel
             _shapes = new List<IShape>();
         }
 
+        public bool IsButtonUndoEnabled
+        {
+            get
+            {
+                return _commandManager.IsButtonUndoEnabled;
+            }
+        }
+
+        public bool IsButtonRedoEnabled
+        {
+            get
+            {
+                return _commandManager.IsButtonRedoEnabled;
+            }
+        }
+
         //設定繪製圖形
         public void SetShapeType(ShapeType shapeType)
         {
@@ -73,6 +89,7 @@ namespace DrawingModel
             _isPressed = false;
             _shapeFactory.DrawShapeType = ShapeType.None;
             _shapes.Clear();
+            _commandManager.Clear();
             NotifyModelChanged();
         }
 

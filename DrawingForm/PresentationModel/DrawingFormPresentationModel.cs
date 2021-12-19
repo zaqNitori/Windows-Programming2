@@ -15,7 +15,6 @@ namespace DrawingForm.PresentationModel
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
             IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
-            IsButtonUndoEnabled = IsButtonRedoEnabled = false;
         }
 
         public bool IsButtonClearEnabled
@@ -35,12 +34,18 @@ namespace DrawingForm.PresentationModel
 
         public bool IsButtonUndoEnabled
         {
-            get; set;
+            get
+            {
+                return _model.IsButtonUndoEnabled;
+            }
         }
 
         public bool IsButtonRedoEnabled
         {
-            get; set;
+            get
+            {
+                return _model.IsButtonRedoEnabled;
+            }
         }
 
         // 繪製

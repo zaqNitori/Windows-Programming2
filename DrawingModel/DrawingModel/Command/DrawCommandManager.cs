@@ -10,11 +10,29 @@ namespace DrawingModel.Command
     {
         private Stack<ICommand> _redoCommand;
         private Stack<ICommand> _undoCommand;
+        private const string NO_REDO_COMMAND_EXCEPTION = "No Redo Command!!";
+        private const string NO_UNDO_COMMAND_EXCEPTION = "No Undo Command!!";
 
         public DrawCommandManager()
         {
             _redoCommand = new Stack<ICommand>();
             _undoCommand = new Stack<ICommand>();
+        }
+
+        public bool IsButtonUndoEnabled
+        {
+            get
+            {
+                return _undoCommand.Count > 0;
+            }
+        }
+
+        public bool IsButtonRedoEnabled
+        {
+            get
+            {
+                return _redoCommand.Count > 0;
+            }
         }
 
         //Save Command And Execute Operation
@@ -30,7 +48,7 @@ namespace DrawingModel.Command
         {
             if (_redoCommand.Count <= 0)
             {
-                throw new Exception("No Redo Command!!");
+                throw new Exception(NO_REDO_COMMAND_EXCEPTION);
             }
             _undoCommand.Push(_redoCommand.Peek());
             _redoCommand.Pop().Execute();
@@ -41,10 +59,17 @@ namespace DrawingModel.Command
         {
             if (_undoCommand.Count <= 0)
             {
-                throw new Exception("No Undo Command!!");
+                throw new Exception(NO_UNDO_COMMAND_EXCEPTION);
             }
             _redoCommand.Push(_undoCommand.Peek());
-            _undoCommand.Pop().UnExecute();
+            _undoCommand.Pop().ReverseExecute();
+        }
+
+        //Clear All stack
+        public void Clear()
+        {
+            _redoCommand.Clear();
+            _undoCommand.Clear();
         }
 
     }

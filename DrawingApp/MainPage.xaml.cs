@@ -32,6 +32,7 @@ namespace DrawingApp
             InitializeCanvas();
             InitializeButton();
             InitializePresentationModel();
+            RefreshButtonStatus();
         }
 
         // 初始化 畫布
@@ -48,6 +49,8 @@ namespace DrawingApp
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+            _buttonRedo.Click += HandleRedo;
+            _buttonUndo.Click += HandleUndo;
         }
 
         // 初始化 PresentationModel
@@ -64,6 +67,8 @@ namespace DrawingApp
             _buttonClear.IsEnabled = _presentationModel.IsButtonClearEnabled;
             _buttonDrawEllipse.IsEnabled = _presentationModel.IsButtonDrawEllipseEnabled;
             _buttonDrawRectangle.IsEnabled = _presentationModel.IsButtonDrawRectangleEnabled;
+            _buttonRedo.IsEnabled = _presentationModel.IsButtonRedoEnabled;
+            _buttonUndo.IsEnabled = _presentationModel.IsButtonUndoEnabled;
         }
 
         /// <summary>
@@ -120,10 +125,25 @@ namespace DrawingApp
             _presentationModel.HandlePointerMoved(e.GetCurrentPoint(_canvas).Position.X, e.GetCurrentPoint(_canvas).Position.Y);
         }
 
+        // 處理 Redo 事件
+        public void HandleRedo(object sender, RoutedEventArgs e)
+        {
+            _presentationModel.HandleRedo();
+            HandleModelChanged();
+        }
+
+        // 處理 Undo 事件
+        public void HandleUndo(object sender, RoutedEventArgs e)
+        {
+            _presentationModel.HandleUndo();
+            HandleModelChanged();
+        }
+
         // 處理 同步通知
         public void HandleModelChanged()
         {
             _presentationModel.Draw();
+            RefreshButtonStatus();
         }
 
     }

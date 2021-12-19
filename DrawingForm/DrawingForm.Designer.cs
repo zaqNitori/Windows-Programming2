@@ -29,9 +29,14 @@ namespace DrawingForm
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawingForm));
             this._buttonDrawRectangle = new System.Windows.Forms.Button();
             this._buttonDrawEllipse = new System.Windows.Forms.Button();
             this._buttonClear = new System.Windows.Forms.Button();
+            this._toolStrip = new System.Windows.Forms.ToolStrip();
+            this._buttonUndo = new System.Windows.Forms.ToolStripButton();
+            this._buttonRedo = new System.Windows.Forms.ToolStripButton();
+            this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _buttonDrawRectangle
@@ -61,17 +66,52 @@ namespace DrawingForm
             this._buttonClear.Text = "Clear";
             this._buttonClear.UseVisualStyleBackColor = true;
             // 
+            // _toolStrip
+            // 
+            this._toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._buttonUndo,
+            this._buttonRedo});
+            this._toolStrip.Location = new System.Drawing.Point(0, 0);
+            this._toolStrip.Name = "_toolStrip";
+            this._toolStrip.Size = new System.Drawing.Size(800, 27);
+            this._toolStrip.TabIndex = 1;
+            this._toolStrip.Text = "toolStrip1";
+            // 
+            // _buttonUndo
+            // 
+            this._buttonUndo.BackColor = System.Drawing.SystemColors.Control;
+            this._buttonUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._buttonUndo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._buttonUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._buttonUndo.Name = "_buttonUndo";
+            this._buttonUndo.Size = new System.Drawing.Size(49, 24);
+            this._buttonUndo.Text = "Undo";
+            // 
+            // _buttonRedo
+            // 
+            this._buttonRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._buttonRedo.Image = ((System.Drawing.Image)(resources.GetObject("_buttonRedo.Image")));
+            this._buttonRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._buttonRedo.Name = "_buttonRedo";
+            this._buttonRedo.Size = new System.Drawing.Size(48, 24);
+            this._buttonRedo.Text = "Redo";
+            // 
             // DrawingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._toolStrip);
             this.Controls.Add(this._buttonClear);
             this.Controls.Add(this._buttonDrawEllipse);
             this.Controls.Add(this._buttonDrawRectangle);
             this.Name = "DrawingForm";
             this.Text = "DrawingForm";
+            this._toolStrip.ResumeLayout(false);
+            this._toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -80,5 +120,8 @@ namespace DrawingForm
         private System.Windows.Forms.Button _buttonDrawRectangle;
         private System.Windows.Forms.Button _buttonDrawEllipse;
         private System.Windows.Forms.Button _buttonClear;
+        private System.Windows.Forms.ToolStrip _toolStrip;
+        private System.Windows.Forms.ToolStripButton _buttonUndo;
+        private System.Windows.Forms.ToolStripButton _buttonRedo;
     }
 }

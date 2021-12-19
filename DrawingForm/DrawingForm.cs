@@ -18,6 +18,7 @@ namespace DrawingForm
             InitializeCanvas();
             InitializeButton();
             InitializePresentationModel();
+            RefreshButtonStatus();
         }
 
         // 初始化 畫布
@@ -36,10 +37,12 @@ namespace DrawingForm
         // 初始化 Button
         private void InitializeButton()
         {
-            _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = 0;
+            _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _toolStrip.Bottom;
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+            _buttonRedo.Click += HandleRedo;
+            _buttonUndo.Click += HandleUndo;
         }
 
         // 初始化 PresentationModel
@@ -56,6 +59,8 @@ namespace DrawingForm
             _buttonClear.Enabled = _presentationModel.IsButtonClearEnabled;
             _buttonDrawEllipse.Enabled = _presentationModel.IsButtonDrawEllipseEnabled;
             _buttonDrawRectangle.Enabled = _presentationModel.IsButtonDrawRectangleEnabled;
+            //_buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
+            //_buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
         }
 
         // 處理 清除按鈕點擊 事件
@@ -107,6 +112,20 @@ namespace DrawingForm
         public void HandleCanvasPaint(object sender, PaintEventArgs e)
         {
             _presentationModel.Draw(e.Graphics);
+        }
+
+        //Handle Redo Event
+        public void HandleRedo(object sender, EventArgs e)
+        {
+            _presentationModel.HandleRedo();
+            HandleModelChanged();
+        }
+
+        //Handle Undo Event
+        public void HandleUndo(object sender, EventArgs e)
+        {
+            _presentationModel.HandleUndo();
+            HandleModelChanged();
         }
 
         // 處理 同步通知

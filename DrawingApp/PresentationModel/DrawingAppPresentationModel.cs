@@ -39,6 +39,22 @@ namespace DrawingApp.PresentationModel
             get; set;
         }
 
+        public bool IsButtonUndoEnabled
+        {
+            get
+            {
+                return _model.IsButtonUndoEnabled;
+            }
+        }
+
+        public bool IsButtonRedoEnabled
+        {
+            get
+            {
+                return _model.IsButtonRedoEnabled;
+            }
+        }
+
         // 繪製
         public void Draw()
         {
@@ -74,6 +90,18 @@ namespace DrawingApp.PresentationModel
         public void HandlePointerMoved(double x1, double y1)
         {
             _model.HandlePointerMoved(x1, y1);
+        }
+
+        //Handle Redo Event
+        public void HandleRedo()
+        {
+            _model.HandleRedo();
+        }
+
+        //Handle Undo Event
+        public void HandleUndo()
+        {
+            _model.HandleUndo();
         }
 
         // 同步通知

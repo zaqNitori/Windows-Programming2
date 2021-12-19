@@ -20,7 +20,7 @@ namespace DrawingModel.Command
         }
 
         //UnExecute
-        public void UnExecute()
+        public void ReverseExecute()
         {
             _drawModel.DeleteShape();
         }

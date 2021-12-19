@@ -12,6 +12,6 @@ namespace DrawingModel.Command
         void Execute();
 
         //UnExecute
-        void UnExecute();
+        void ReverseExecute();
     }
 }

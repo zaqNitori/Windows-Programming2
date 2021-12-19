@@ -1,5 +1,6 @@
 ﻿using DrawingModel.Shape;
 using System.Collections.Generic;
+using DrawingModel.Command;
 
 namespace DrawingModel
 {
@@ -7,16 +8,21 @@ namespace DrawingModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
-        ShapeFactory _shapeFactory;
+
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
-        List<IShape> _shapes = new List<IShape>();
+
+        DrawCommandManager _commandManager;
+        ShapeFactory _shapeFactory;
+        List<IShape> _shapes;
         IShape _hint;
 
         public DrawModel()
         {
             _shapeFactory = new ShapeFactory(ShapeType.None);
+            _commandManager = new DrawCommandManager();
+            _shapes = new List<IShape>();
         }
 
         //設定繪製圖形
@@ -56,7 +62,7 @@ namespace DrawingModel
             {
                 _isPressed = false;
                 IShape shape = _shapeFactory.BuildShape(_firstPointX, _firstPointY, pointX, pointY);
-                _shapes.Add(shape);
+                _commandManager.Execute(new DrawCommand(this, shape));
                 NotifyModelChanged();
             }
         }
@@ -78,6 +84,30 @@ namespace DrawingModel
                 shape.Draw(graphics);
             if (_isPressed)
                 _hint.Draw(graphics);
+        }
+
+        //Handle Redo Event
+        public void HandleRedo()
+        {
+            _commandManager.Redo();
+        }
+
+        //Handle Undo Event
+        public void HandleUndo()
+        {
+            _commandManager.Undo();
+        }
+
+        //Insert shape
+        public void InsertShape(IShape shape)
+        {
+            _shapes.Add(shape);
+        }
+
+        //Delete Last insert shape
+        public void DeleteShape()
+        {
+            _shapes.RemoveAt(_shapes.Count - 1);
         }
 
         // 同步通知

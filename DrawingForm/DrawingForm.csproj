@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DrawingModel\DrawingModel\Command\DrawCommand.cs">
+      <Link>Command\DrawCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Command\DrawCommandManager.cs">
+      <Link>Command\DrawCommandManager.cs</Link>
+    </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\Command\ICommand.cs">
+      <Link>Command\ICommand.cs</Link>
+    </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Common.cs">
       <Link>Model\Common.cs</Link>
     </Compile>
@@ -56,19 +65,19 @@
       <Link>Model\IGraphics.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\ShapeFactory.cs">
-      <Link>Model\ShapeFactory.cs</Link>
+      <Link>Shape\ShapeFactory.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\Ellipse.cs">
-      <Link>Model\Ellipse.cs</Link>
+      <Link>Shape\Ellipse.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\Interface\Ishape.cs">
-      <Link>Model\Ishape.cs</Link>
+      <Link>Shape\Ishape.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\Rectangle.cs">
-      <Link>Model\Rectangle.cs</Link>
+      <Link>Shape\Rectangle.cs</Link>
     </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\Shape\ShapeType.cs">
-      <Link>Model\ShapeType.cs</Link>
+      <Link>Shape\ShapeType.cs</Link>
     </Compile>
     <Compile Include="DoubleBufferedPanel.cs">
       <SubType>Component</SubType>
@@ -109,5 +118,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -210,7 +210,7 @@
               <Weight>5</Weight>
               <Project>DrawingApp</Project>
               <File>DrawingAppGraphicsAdaptor.cs</File>
-              <Line>54</Line>
+              <Line>75</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -220,18 +220,50 @@
             </Smell>
             <Smell>
               <Id>3</Id>
-              <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>58 目前物件 DrawingModel.DrawModel，使用物件的方法或屬性次數：0次，Envy到對象物件 DrawingModel.ShapeFactory，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DrawingModel.ShapeFactory.BuildShape(double, double) 以及 DrawingModel.ShapeFactory.DrawShapeType</HashCode>
-              <Severity>Warning</Severity>
+              <SmellType>Lack of comments(缺乏註解)</SmellType>
+              <HashCode>129 DrawingApp.DrawingApp_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByType(System.Type)</HashCode>
+              <Severity>Red</Severity>
               <Weight>1</Weight>
-              <Project>DrawingModel</Project>
-              <File>D:\Ntut\Windows-Programming\Drawing\DrawingModel\DrawingModel\DrawModel.cs</File>
-              <Line>58</Line>
-              <StartLine>57</StartLine>
+              <Project>DrawingApp</Project>
+              <File>XamlTypeInfo.g.cs</File>
+              <Line>129</Line>
+              <StartLine>0</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>58</EndLine>
+              <EndLine>0</EndLine>
               <EndCol>0</EndCol>
-              <Comment>目前物件 DrawingModel.DrawModel，使用物件的方法或屬性次數：0次，Envy到對象物件 DrawingModel.ShapeFactory，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DrawingModel.ShapeFactory.BuildShape(double, double) 以及 DrawingModel.ShapeFactory.DrawShapeType</Comment>
+              <Comment>DrawingApp.DrawingApp_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByType(System.Type)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>4</Id>
+              <SmellType>Lack of comments(缺乏註解)</SmellType>
+              <HashCode>134 DrawingApp.DrawingApp_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByName(string)</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>DrawingApp</Project>
+              <File>XamlTypeInfo.g.cs</File>
+              <Line>134</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>DrawingApp.DrawingApp_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByName(string)</Comment>
+              <Auto>false</Auto>
+            </Smell>
+            <Smell>
+              <Id>5</Id>
+              <SmellType>Lack of comments(缺乏註解)</SmellType>
+              <HashCode>50 DrawingApp.MainPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</HashCode>
+              <Severity>Red</Severity>
+              <Weight>1</Weight>
+              <Project>DrawingApp</Project>
+              <File>MainPage.g.i.cs</File>
+              <Line>50</Line>
+              <StartLine>0</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>0</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>DrawingApp.MainPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</Comment>
               <Auto>false</Auto>
             </Smell>
           </Reviews>
@@ -239,7 +271,6 @@
           <HashCodeRequestIgnoreList>
             <string>LongMethod.App.OnLaunched.35LaunchActivatedEventArgs e;</string>
             <string>LongParameterList.DrawingAppGraphicsAdaptor.InitializeShape.Shape shape;double x1;double y1;double x2;double y2;</string>
-            <string>58 目前物件 DrawingModel.DrawModel，使用物件的方法或屬性次數：0次，Envy到對象物件 DrawingModel.ShapeFactory，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DrawingModel.ShapeFactory.BuildShape(double, double) 以及 DrawingModel.ShapeFactory.DrawShapeType</string>
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
@@ -385,7 +416,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1529</ProductionLoc>
+          <ProductionLoc>1688</ProductionLoc>
           <TestLoc>0</TestLoc>
         </CodeReview>
       </Data>

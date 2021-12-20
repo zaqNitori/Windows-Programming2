@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DrawingModel;
 using DrawingForm.PresentationModel;
 using DrawingModel.Shape;
+using System.Reflection;
 
 namespace DrawingForm
 {
@@ -37,10 +38,11 @@ namespace DrawingForm
         // 初始化 Button
         private void InitializeButton()
         {
-            _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _toolStrip.Bottom;
+            _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _buttonChoose.Top = _toolStrip.Bottom;
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+            _buttonChoose.Click += HandleChooseButtonClick;
             _buttonRedo.Click += HandleRedo;
             _buttonUndo.Click += HandleUndo;
         }
@@ -67,6 +69,15 @@ namespace DrawingForm
         public void HandleClearButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Clear();
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
+            RefreshButtonStatus();
+        }
+
+        // 處理 Chooses按鈕點擊 事件
+        public void HandleChooseButtonClick(object sender, EventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.None);
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             RefreshButtonStatus();

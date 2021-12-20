@@ -10,6 +10,7 @@ namespace DrawingModel.Shape
     {
         public Ellipse(double x1, double y1, double x2, double y2)
         {
+            Common.ResetMarginPoint(ref x1, ref y1, ref x2, ref y2);
             Y1 = y1;
             X1 = x1;
             Y2 = y2;
@@ -36,10 +37,31 @@ namespace DrawingModel.Shape
             get; set;
         }
 
+        public bool IsChecked
+        {
+            get; set;
+        }
+
         // 繪圖
         public void Draw(IGraphics graphics)
         {
-            graphics.DrawEllipse(X1, Y1, X2, Y2);
+            graphics.FillEllipse(X1, Y1, X2, Y2);
+            if (IsChecked)
+            {
+                graphics.DrawEllipse(X1, Y1, X2, Y2);
+            }
+        }
+
+        // 判斷是否 覆蓋 點
+        public bool IsPointCoverd(double x1, double y1)
+        {
+            if (x1 >= X1 && x1 <= X2
+                && y1 >= Y1 && y1 <= Y2)
+            {
+                IsChecked = true;
+                return true;
+            }
+            return false;
         }
 
         // 設定底部

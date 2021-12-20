@@ -7,6 +7,9 @@ namespace DrawingModel.Shape
         // 繪製圖形
         void Draw(IGraphics graphics);
 
+        // 判斷是否選到圖片
+        bool IsPointCoverd(double x1, double y1);
+
         // 設定底部
         void SetBottom(double y2);
 

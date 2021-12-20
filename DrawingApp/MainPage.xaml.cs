@@ -49,6 +49,7 @@ namespace DrawingApp
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+            _buttonChoose.Click += HandleChooseButtonClick;
             _buttonRedo.Click += HandleRedo;
             _buttonUndo.Click += HandleUndo;
         }
@@ -86,6 +87,15 @@ namespace DrawingApp
             _model.Clear();
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
+            RefreshButtonStatus();
+        }
+
+        // 處理 Chooses按鈕點擊 事件
+        public void HandleChooseButtonClick(object sender, RoutedEventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.None);
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
             RefreshButtonStatus();
         }
 

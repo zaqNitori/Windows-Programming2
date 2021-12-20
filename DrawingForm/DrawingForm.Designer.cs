@@ -36,6 +36,7 @@ namespace DrawingForm
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._buttonUndo = new System.Windows.Forms.ToolStripButton();
             this._buttonRedo = new System.Windows.Forms.ToolStripButton();
+            this._buttonChoose = new System.Windows.Forms.Button();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +44,7 @@ namespace DrawingForm
             // 
             this._buttonDrawRectangle.Location = new System.Drawing.Point(92, 49);
             this._buttonDrawRectangle.Name = "_buttonDrawRectangle";
-            this._buttonDrawRectangle.Size = new System.Drawing.Size(140, 70);
+            this._buttonDrawRectangle.Size = new System.Drawing.Size(100, 50);
             this._buttonDrawRectangle.TabIndex = 0;
             this._buttonDrawRectangle.Text = "Rectangle";
             this._buttonDrawRectangle.UseVisualStyleBackColor = true;
@@ -52,7 +53,7 @@ namespace DrawingForm
             // 
             this._buttonDrawEllipse.Location = new System.Drawing.Point(240, 49);
             this._buttonDrawEllipse.Name = "_buttonDrawEllipse";
-            this._buttonDrawEllipse.Size = new System.Drawing.Size(140, 70);
+            this._buttonDrawEllipse.Size = new System.Drawing.Size(100, 50);
             this._buttonDrawEllipse.TabIndex = 0;
             this._buttonDrawEllipse.Text = "Ellipse";
             this._buttonDrawEllipse.UseVisualStyleBackColor = true;
@@ -61,7 +62,7 @@ namespace DrawingForm
             // 
             this._buttonClear.Location = new System.Drawing.Point(386, 49);
             this._buttonClear.Name = "_buttonClear";
-            this._buttonClear.Size = new System.Drawing.Size(140, 70);
+            this._buttonClear.Size = new System.Drawing.Size(100, 50);
             this._buttonClear.TabIndex = 0;
             this._buttonClear.Text = "Clear";
             this._buttonClear.UseVisualStyleBackColor = true;
@@ -97,11 +98,21 @@ namespace DrawingForm
             this._buttonRedo.Size = new System.Drawing.Size(48, 24);
             this._buttonRedo.Text = "Redo";
             // 
+            // _buttonChoose
+            // 
+            this._buttonChoose.Location = new System.Drawing.Point(527, 49);
+            this._buttonChoose.Name = "_buttonChoose";
+            this._buttonChoose.Size = new System.Drawing.Size(100, 50);
+            this._buttonChoose.TabIndex = 2;
+            this._buttonChoose.Text = "Choose";
+            this._buttonChoose.UseVisualStyleBackColor = true;
+            // 
             // DrawingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._buttonChoose);
             this.Controls.Add(this._toolStrip);
             this.Controls.Add(this._buttonClear);
             this.Controls.Add(this._buttonDrawEllipse);
@@ -123,5 +134,6 @@ namespace DrawingForm
         private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _buttonUndo;
         private System.Windows.Forms.ToolStripButton _buttonRedo;
+        private System.Windows.Forms.Button _buttonChoose;
     }
 }

@@ -10,6 +10,8 @@ namespace DrawingApp.PresentationModel
     class DrawingAppGraphicsAdaptor : IGraphics
     {
         Canvas _canvas;
+        const float DASH_PATTERN = 2f;
+
         public DrawingAppGraphicsAdaptor(Canvas canvas)
         {
             this._canvas = canvas;
@@ -38,8 +40,8 @@ namespace DrawingApp.PresentationModel
         {
             Rectangle rectangle = new Rectangle();
             InitializeShape(rectangle, x1, y1, x2, y2);
+            InitialShapeBorderStyle(rectangle);
             _canvas.Children.Add(rectangle);
-
         }
 
         // 畫圓
@@ -47,6 +49,25 @@ namespace DrawingApp.PresentationModel
         {
             Ellipse ellipse = new Ellipse();
             InitializeShape(ellipse, x1, y1, x2, y2);
+            InitialShapeBorderStyle(ellipse);
+            _canvas.Children.Add(ellipse);
+        }
+
+        // 畫矩形
+        public void FillRectangle(double x1, double y1, double x2, double y2)
+        {
+            Rectangle rectangle = new Rectangle();
+            InitializeShape(rectangle, x1, y1, x2, y2);
+            rectangle.Fill = new SolidColorBrush(Colors.Blue);
+            _canvas.Children.Add(rectangle);
+        }
+
+        // 畫圓
+        public void FillEllipse(double x1, double y1, double x2, double y2)
+        {
+            Ellipse ellipse = new Ellipse();
+            InitializeShape(ellipse, x1, y1, x2, y2);
+            ellipse.Fill = new SolidColorBrush(Colors.Blue);
             _canvas.Children.Add(ellipse);
         }
 
@@ -57,10 +78,18 @@ namespace DrawingApp.PresentationModel
             shape.Margin = new Thickness(x1, y1, x2, y2);
             shape.Width = x2 - x1;
             shape.Height = y2 - y1;
-            shape.Stroke = new SolidColorBrush(Colors.Black);
-            shape.Fill = new SolidColorBrush(Colors.Blue);
             return shape;
         }
         
+        //設定圖形外框
+        private void InitialShapeBorderStyle(Shape shape)
+        {
+            shape.Stroke = new SolidColorBrush(Colors.Black);
+            shape.StrokeDashArray = new DoubleCollection() 
+            { 
+                DASH_PATTERN 
+            };
+        }
+
     }
 }

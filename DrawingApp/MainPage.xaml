@@ -11,9 +11,10 @@
     <Grid Margin="0,0,0,0">
         <Button x:Name="_buttonUndo" Content="Undo" Margin="50,10,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
         <Button x:Name="_buttonRedo" Content="Redo" Margin="140,10,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
-        <Button x:Name="_buttonClear" Content="Clear" Margin="480,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
-        <Button x:Name="_buttonDrawRectangle" Content="Rectangle" Margin="88,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
+        <Button x:Name="_buttonDrawRectangle" Content="Rectangle" Margin="80,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
         <Button x:Name="_buttonDrawEllipse" Content="Ellipse" Margin="280,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
+        <Button x:Name="_buttonClear" Content="Clear" Margin="480,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
+        <Button x:Name="_buttonChoose" Content="Choose" Margin="680,50,0,0" VerticalAlignment="Top" Height="50" Width="120"/>
         <Canvas x:Name="_canvas" Background="Gray" Margin="0,172,0,0" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <CompositeTransform ScaleY="-1"/>

@@ -51,12 +51,33 @@ namespace DrawingModel
         public void HandlePointerPressed(double pointX, double pointY)
         {
             bool isShape = _shapeFactory.DrawShapeType != ShapeType.None;
-            if (pointX > 0 && pointY > 0 && isShape)
+            if (pointX > 0 && pointY > 0)
             {
-                _firstPointX = pointX;
-                _firstPointY = pointY;
-                _hint = _shapeFactory.BuildShape(pointX, pointY);
-                _isPressed = true;
+                if (isShape)
+                {
+                    _firstPointX = pointX;
+                    _firstPointY = pointY;
+                    _hint = _shapeFactory.BuildShape(pointX, pointY);
+                    _isPressed = true;
+                }
+                else
+                {
+                    ChooseShape(pointX, pointY);
+                }
+            }
+            
+        }
+
+        // 判斷是否有選到圖形
+        private void ChooseShape(double pointX, double pointY)
+        {
+            for (var i = _shapes.Count - 1; i >= 0; i--)
+            {
+                if (_shapes[i].IsPointCoverd(pointX, pointY))
+                {
+                    NotifyModelChanged();
+                    break;
+                }
             }
         }
 

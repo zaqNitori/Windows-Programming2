@@ -15,7 +15,7 @@ namespace DrawingForm.PresentationModel
         public DrawingFormGraphicsAdaptor(Graphics graphics)
         {
             this._graphics = graphics;
-            _brush = new SolidBrush(Color.Green);
+            _brush = new SolidBrush(Color.YellowGreen);
             _dashPen = new Pen(Color.Black);
             _dashPen.DashStyle = DashStyle.Custom;
             _dashPen.DashPattern = new float[] { DASH_PATTERN, DASH_PATTERN };

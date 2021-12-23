@@ -21,7 +21,12 @@ namespace DrawingApp.PresentationModel
             this._model = model;
             _iGraphics = new DrawingAppGraphicsAdaptor(canvas);
             _model._modelChanged += NotifyModelChanged;
-            IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+            IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+        }
+
+        public bool IsButtonChooseEnabled
+        {
+            get; set;
         }
 
         public bool IsButtonClearEnabled

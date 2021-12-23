@@ -266,6 +266,22 @@
               <Comment>DrawingApp.MainPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</Comment>
               <Auto>false</Auto>
             </Smell>
+            <Smell>
+              <Id>6</Id>
+              <SmellType>Feature Envy(依戀情節)</SmellType>
+              <HashCode>61 目前物件 DrawingModel.DrawModel，使用物件的方法或屬性次數：0次，Envy到對象物件 DrawingModel.ShapeFactory，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DrawingModel.ShapeFactory.BuildShape(double, double) 以及 DrawingModel.ShapeFactory.DrawShapeType</HashCode>
+              <Severity>Warning</Severity>
+              <Weight>1</Weight>
+              <Project>DrawingModel</Project>
+              <File>D:\Ntut\Windows-Programming\Drawing\DrawingModel\DrawingModel\DrawModel.cs</File>
+              <Line>61</Line>
+              <StartLine>60</StartLine>
+              <StartCol>0</StartCol>
+              <EndLine>61</EndLine>
+              <EndCol>0</EndCol>
+              <Comment>目前物件 DrawingModel.DrawModel，使用物件的方法或屬性次數：0次，Envy到對象物件 DrawingModel.ShapeFactory，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DrawingModel.ShapeFactory.BuildShape(double, double) 以及 DrawingModel.ShapeFactory.DrawShapeType</Comment>
+              <Auto>false</Auto>
+            </Smell>
           </Reviews>
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
@@ -291,6 +307,11 @@
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Common.cs</RelativePath>
+                <ProjectName>DrawingModel</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>CommonString.cs</RelativePath>
                 <ProjectName>DrawingModel</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
@@ -416,7 +437,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1688</ProductionLoc>
+          <ProductionLoc>1799</ProductionLoc>
           <TestLoc>0</TestLoc>
         </CodeReview>
       </Data>

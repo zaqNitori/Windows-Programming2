@@ -40,7 +40,7 @@ namespace DrawingApp.PresentationModel
         {
             Rectangle rectangle = new Rectangle();
             InitializeShape(rectangle, x1, y1, x2, y2);
-            InitialShapeBorderStyle(rectangle);
+            InitializeShapeBorderStyle(rectangle);
             _canvas.Children.Add(rectangle);
         }
 
@@ -49,7 +49,7 @@ namespace DrawingApp.PresentationModel
         {
             Ellipse ellipse = new Ellipse();
             InitializeShape(ellipse, x1, y1, x2, y2);
-            InitialShapeBorderStyle(ellipse);
+            InitializeShapeBorderStyle(ellipse);
             _canvas.Children.Add(ellipse);
         }
 
@@ -58,7 +58,7 @@ namespace DrawingApp.PresentationModel
         {
             Rectangle rectangle = new Rectangle();
             InitializeShape(rectangle, x1, y1, x2, y2);
-            rectangle.Fill = new SolidColorBrush(Colors.Blue);
+            InitializeShapeFillStyle(rectangle);
             _canvas.Children.Add(rectangle);
         }
 
@@ -67,7 +67,7 @@ namespace DrawingApp.PresentationModel
         {
             Ellipse ellipse = new Ellipse();
             InitializeShape(ellipse, x1, y1, x2, y2);
-            ellipse.Fill = new SolidColorBrush(Colors.Blue);
+            InitializeShapeFillStyle(ellipse);
             _canvas.Children.Add(ellipse);
         }
 
@@ -80,9 +80,15 @@ namespace DrawingApp.PresentationModel
             shape.Height = y2 - y1;
             return shape;
         }
-        
-        //設定圖形外框
-        private void InitialShapeBorderStyle(Shape shape)
+
+        // 設定圖形填滿
+        private void InitializeShapeFillStyle(Shape shape)
+        {
+            shape.Fill = new SolidColorBrush(Colors.YellowGreen);
+        }
+
+        // 設定圖形外框
+        private void InitializeShapeBorderStyle(Shape shape)
         {
             shape.Stroke = new SolidColorBrush(Colors.Black);
             shape.StrokeDashArray = new DoubleCollection() 

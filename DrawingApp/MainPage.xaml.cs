@@ -70,6 +70,7 @@ namespace DrawingApp
             _buttonDrawRectangle.IsEnabled = _presentationModel.IsButtonDrawRectangleEnabled;
             _buttonRedo.IsEnabled = _presentationModel.IsButtonRedoEnabled;
             _buttonUndo.IsEnabled = _presentationModel.IsButtonUndoEnabled;
+            _buttonChoose.IsEnabled = _presentationModel.IsButtonChooseEnabled;
         }
 
         /// <summary>
@@ -87,6 +88,7 @@ namespace DrawingApp
             _model.Clear();
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 
@@ -96,6 +98,7 @@ namespace DrawingApp
             _presentationModel.SetDrawShapeType(ShapeType.None);
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = false;
             RefreshButtonStatus();
         }
 
@@ -105,6 +108,7 @@ namespace DrawingApp
             _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 
@@ -114,6 +118,7 @@ namespace DrawingApp
             _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 

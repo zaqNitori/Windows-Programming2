@@ -63,6 +63,7 @@ namespace DrawingForm
             _buttonDrawRectangle.Enabled = _presentationModel.IsButtonDrawRectangleEnabled;
             _buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
             _buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
+            _buttonChoose.Enabled = _presentationModel.IsButtonChooseEnabled;
         }
 
         // 處理 清除按鈕點擊 事件
@@ -71,6 +72,7 @@ namespace DrawingForm
             _presentationModel.Clear();
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 
@@ -80,6 +82,7 @@ namespace DrawingForm
             _presentationModel.SetDrawShapeType(ShapeType.None);
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = false;
             RefreshButtonStatus();
         }
 
@@ -89,6 +92,7 @@ namespace DrawingForm
             _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 
@@ -98,6 +102,7 @@ namespace DrawingForm
             _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
             RefreshButtonStatus();
         }
 

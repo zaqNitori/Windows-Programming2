@@ -40,14 +40,16 @@ namespace DrawingModel.Shape
             get; set;
         }
 
-        // 繪圖
+        // 繪圖 - 外框
         public void Draw(IGraphics graphics)
         {
+            graphics.DrawRectangle(X1, Y1, X2, Y2);
+        }
+
+        // 繪圖 - 填滿
+        public void Fill(IGraphics graphics)
+        {
             graphics.FillRectangle(X1, Y1, X2, Y2);
-            if (IsChecked)
-            {
-                graphics.DrawRectangle(X1, Y1, X2, Y2);
-            }
         }
 
         // 判斷是否 覆蓋 點

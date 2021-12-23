@@ -12,10 +12,12 @@ namespace DrawingModel
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
+        bool _isSelected = false;
 
         DrawCommandManager _commandManager;
         ShapeFactory _shapeFactory;
         List<IShape> _shapes;
+        IShape _selectedShape;
         IShape _hint;
 
         public DrawModel()
@@ -50,10 +52,9 @@ namespace DrawingModel
         // 按下滑鼠
         public void HandlePointerPressed(double pointX, double pointY)
         {
-            bool isShape = _shapeFactory.DrawShapeType != ShapeType.None;
             if (pointX > 0 && pointY > 0)
             {
-                if (isShape)
+                if (_shapeFactory.DrawShapeType != ShapeType.None) 
                 {
                     _firstPointX = pointX;
                     _firstPointY = pointY;
@@ -62,23 +63,28 @@ namespace DrawingModel
                 }
                 else
                 {
-                    ChooseShape(pointX, pointY);
+                    _selectedShape = SelectShape(pointX, pointY);
+                    if (_isSelected)
+                    {
+                        NotifyModelChanged();
+                    }
                 }
             }
-            
         }
 
         // 判斷是否有選到圖形
-        private void ChooseShape(double pointX, double pointY)
+        private IShape SelectShape(double pointX, double pointY)
         {
             for (var i = _shapes.Count - 1; i >= 0; i--)
             {
                 if (_shapes[i].IsPointCoverd(pointX, pointY))
                 {
-                    NotifyModelChanged();
-                    break;
+                    _isSelected = true;
+                    return _shapes[i];
                 }
             }
+            _isSelected = false;
+            return null;
         }
 
         // 滑鼠移動
@@ -107,7 +113,7 @@ namespace DrawingModel
         // 清空畫面
         public void Clear()
         {
-            _isPressed = false;
+            _isSelected = _isPressed = false;
             _shapeFactory.DrawShapeType = ShapeType.None;
             _shapes.Clear();
             _commandManager.Clear();
@@ -119,9 +125,11 @@ namespace DrawingModel
         {
             graphics.ClearAll();
             foreach (var shape in _shapes)
-                shape.Draw(graphics);
+                shape.Fill(graphics);
             if (_isPressed)
                 _hint.Draw(graphics);
+            if (_isSelected)
+                _selectedShape.Draw(graphics);
         }
 
         //Handle Redo Event
@@ -145,7 +153,13 @@ namespace DrawingModel
         //Delete Last insert shape
         public void DeleteShape()
         {
-            _shapes.RemoveAt(_shapes.Count - 1);
+            int last = _shapes.Count - 1;
+            if (_shapes.LastIndexOf(_selectedShape) == last)
+            {
+                _isSelected = false;
+                _selectedShape = null;
+            }
+            _shapes.RemoveAt(last);
         }
 
         // 同步通知

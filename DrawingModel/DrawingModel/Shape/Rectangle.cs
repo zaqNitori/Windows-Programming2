@@ -64,6 +64,16 @@ namespace DrawingModel.Shape
             return false;
         }
 
+        // 格式化字串
+        public override string ToString()
+        {
+            return nameof(Rectangle) + CommonString.FRONT_BRACKET_SMALL
+                + X1.ToString() + CommonString.COMMA + CommonString.SPACE
+                + Y1.ToString() + CommonString.COMMA + CommonString.SPACE
+                + X2.ToString() + CommonString.COMMA + CommonString.SPACE
+                + Y2.ToString() + CommonString.BACK_BRACKET_SMALL;
+        }
+
         // 設定底部
         public void SetBottom(double y2)
         {

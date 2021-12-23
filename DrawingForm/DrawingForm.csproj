@@ -58,6 +58,9 @@
     <Compile Include="..\DrawingModel\DrawingModel\Common.cs">
       <Link>Model\Common.cs</Link>
     </Compile>
+    <Compile Include="..\DrawingModel\DrawingModel\CommonString.cs">
+      <Link>Model\CommonString.cs</Link>
+    </Compile>
     <Compile Include="..\DrawingModel\DrawingModel\DrawModel.cs">
       <Link>Model\DrawModel.cs</Link>
     </Compile>

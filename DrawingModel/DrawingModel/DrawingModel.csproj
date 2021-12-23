@@ -46,6 +46,7 @@
     <Compile Include="Command\DrawCommandManager.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="CommonString.cs" />
     <Compile Include="DrawModel.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

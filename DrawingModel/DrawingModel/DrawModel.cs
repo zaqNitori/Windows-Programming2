@@ -65,9 +65,7 @@ namespace DrawingModel
                 {
                     _selectedShape = SelectShape(pointX, pointY);
                     if (_isSelected)
-                    {
                         NotifyModelChanged();
-                    }
                 }
             }
         }

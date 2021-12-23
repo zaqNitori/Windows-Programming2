@@ -37,6 +37,7 @@ namespace DrawingForm
             this._buttonUndo = new System.Windows.Forms.ToolStripButton();
             this._buttonRedo = new System.Windows.Forms.ToolStripButton();
             this._buttonChoose = new System.Windows.Forms.Button();
+            this._selectedLabel = new System.Windows.Forms.Label();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,11 +108,25 @@ namespace DrawingForm
             this._buttonChoose.Text = "Choose";
             this._buttonChoose.UseVisualStyleBackColor = true;
             // 
+            // _selectedLabel
+            // 
+            this._selectedLabel.AutoSize = true;
+            this._selectedLabel.BackColor = System.Drawing.SystemColors.Control;
+            this._selectedLabel.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this._selectedLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._selectedLabel.Location = new System.Drawing.Point(593, 421);
+            this._selectedLabel.Name = "_selectedLabel";
+            this._selectedLabel.Size = new System.Drawing.Size(34, 20);
+            this._selectedLabel.TabIndex = 3;
+            this._selectedLabel.Text = "test";
+            this._selectedLabel.Visible = false;
+            // 
             // DrawingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._selectedLabel);
             this.Controls.Add(this._buttonChoose);
             this.Controls.Add(this._toolStrip);
             this.Controls.Add(this._buttonClear);
@@ -135,5 +150,6 @@ namespace DrawingForm
         private System.Windows.Forms.ToolStripButton _buttonUndo;
         private System.Windows.Forms.ToolStripButton _buttonRedo;
         private System.Windows.Forms.Button _buttonChoose;
+        private System.Windows.Forms.Label _selectedLabel;
     }
 }

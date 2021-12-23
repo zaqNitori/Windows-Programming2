@@ -15,6 +15,12 @@ namespace DrawingForm.PresentationModel
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
             IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+            IsLabelSelectedVisible = false;
+        }
+
+        public bool IsLabelSelectedVisible
+        {
+            get; set;
         }
 
         public bool IsButtonChooseEnabled

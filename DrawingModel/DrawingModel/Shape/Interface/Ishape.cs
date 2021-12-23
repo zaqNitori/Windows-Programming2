@@ -18,5 +18,6 @@ namespace DrawingModel.Shape
 
         // 設定右邊
         void SetRight(double x2);
+
     }
 }

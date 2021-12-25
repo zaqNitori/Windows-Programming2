@@ -87,7 +87,7 @@ namespace DrawingForm
             this._buttonUndo.ForeColor = System.Drawing.SystemColors.ControlText;
             this._buttonUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._buttonUndo.Name = "_buttonUndo";
-            this._buttonUndo.Size = new System.Drawing.Size(49, 24);
+            this._buttonUndo.Size = new System.Drawing.Size(49, 28);
             this._buttonUndo.Text = "Undo";
             // 
             // _buttonRedo
@@ -114,12 +114,10 @@ namespace DrawingForm
             this._selectedLabel.BackColor = System.Drawing.SystemColors.Control;
             this._selectedLabel.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this._selectedLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._selectedLabel.Location = new System.Drawing.Point(593, 421);
+            this._selectedLabel.Location = new System.Drawing.Point(12, 421);
             this._selectedLabel.Name = "_selectedLabel";
-            this._selectedLabel.Size = new System.Drawing.Size(34, 20);
+            this._selectedLabel.Size = new System.Drawing.Size(0, 20);
             this._selectedLabel.TabIndex = 3;
-            this._selectedLabel.Text = "test";
-            this._selectedLabel.Visible = false;
             // 
             // DrawingForm
             // 

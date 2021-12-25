@@ -24,6 +24,14 @@ namespace DrawingApp.PresentationModel
             IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
 
+        public string SelectedLabelText
+        {
+            get
+            {
+                return _model.GetSelectedInformation();
+            }
+        }
+
         public bool IsButtonChooseEnabled
         {
             get; set;

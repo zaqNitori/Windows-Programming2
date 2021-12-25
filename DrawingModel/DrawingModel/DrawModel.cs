@@ -43,6 +43,12 @@ namespace DrawingModel
             }
         }
 
+        // 圖形選取資訊
+        public string GetSelectedInformation()
+        {
+            return _isSelected ? CommonString.SELECTED_INFO + _selectedShape.ToString() : string.Empty;
+        }
+
         //設定繪製圖形
         public void SetShapeType(ShapeType shapeType)
         {

@@ -18,5 +18,6 @@ namespace DrawingModel
         public const string SPACE = " ";
 
         public const string SELECTED_INFO = "Selected : ";
+        public const string ATTRIBUTE_TEXT = "Text";
     }
 }

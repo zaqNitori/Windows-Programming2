@@ -70,10 +70,10 @@ namespace DrawingModel.Shape
         public override string ToString()
         {
             return nameof(Ellipse) + CommonString.FRONT_BRACKET_SMALL
-                + X1.ToString() + CommonString.COMMA + CommonString.SPACE
-                + Y1.ToString() + CommonString.COMMA + CommonString.SPACE
-                + X2.ToString() + CommonString.COMMA + CommonString.SPACE
-                + Y2.ToString() + CommonString.BACK_BRACKET_SMALL;
+                + ((int)X1).ToString() + CommonString.COMMA + CommonString.SPACE
+                + ((int)Y1).ToString() + CommonString.COMMA + CommonString.SPACE
+                + ((int)X2).ToString() + CommonString.COMMA + CommonString.SPACE
+                + ((int)Y2).ToString() + CommonString.BACK_BRACKET_SMALL;
         }
 
         // 設定底部

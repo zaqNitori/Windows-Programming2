@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DrawingModel.Shape;
+using DrawingModel;
 
 // 空白頁項目範本已記錄在 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x404
 
@@ -29,10 +30,10 @@ namespace DrawingApp
         public MainPage()
         {
             InitializeComponent();
-            InitializeCanvas();
-            InitializeButton();
             InitializePresentationModel();
-            RefreshButtonStatus();
+            InitializeCanvas();
+            InitializeControl();
+            RefreshControlStatus();
         }
 
         // 初始化 畫布
@@ -41,6 +42,12 @@ namespace DrawingApp
             _canvas.PointerPressed += HandleCanvasPointerPressed;
             _canvas.PointerReleased += HandleCanvasPointerReleased;
             _canvas.PointerMoved += HandleCanvasPointerMoved;
+        }
+
+        // 初始化 控制向
+        private void InitializeControl()
+        {
+            InitializeButton();
         }
 
         // 初始化 Button
@@ -60,6 +67,13 @@ namespace DrawingApp
             _model = new DrawingModel.DrawModel();
             _presentationModel = new PresentationModel.DrawingAppPresentationModel(_model, _canvas);
             _presentationModel._modelChanged += HandleModelChanged;
+        }
+
+        // 重置畫面控制向狀態
+        private void RefreshControlStatus()
+        {
+            RefreshButtonStatus();
+            _selectedTextBlock.Text = _presentationModel.SelectedLabelText;
         }
 
         // 重置畫面按鈕狀態
@@ -89,7 +103,7 @@ namespace DrawingApp
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonChooseEnabled = true;
-            RefreshButtonStatus();
+            RefreshControlStatus();
         }
 
         // 處理 Chooses按鈕點擊 事件
@@ -99,7 +113,7 @@ namespace DrawingApp
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonChooseEnabled = false;
-            RefreshButtonStatus();
+            RefreshControlStatus();
         }
 
         // 處理 清除按鈕點擊 事件
@@ -109,7 +123,7 @@ namespace DrawingApp
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonChooseEnabled = true;
-            RefreshButtonStatus();
+            RefreshControlStatus();
         }
 
         // 處理 清除按鈕點擊 事件
@@ -119,7 +133,7 @@ namespace DrawingApp
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonChooseEnabled = true;
-            RefreshButtonStatus();
+            RefreshControlStatus();
         }
 
         // 處理畫布 滑鼠點擊事件
@@ -158,7 +172,7 @@ namespace DrawingApp
         public void HandleModelChanged()
         {
             _presentationModel.Draw();
-            RefreshButtonStatus();
+            RefreshControlStatus();
         }
 
     }

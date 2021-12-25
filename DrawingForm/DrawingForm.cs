@@ -16,9 +16,9 @@ namespace DrawingForm
         public DrawingForm()
         {
             InitializeComponent();
-            InitializeCanvas();
-            InitializeButton();
             InitializePresentationModel();
+            InitializeCanvas();
+            InitializeControl();
             RefreshControlStatus();
         }
 
@@ -33,6 +33,13 @@ namespace DrawingForm
             _canvas.MouseMove += HandleCanvasPointerMoved;
             _canvas.Paint += HandleCanvasPaint;
             Controls.Add(_canvas);
+        }
+
+        // 初始化 控制向
+        private void InitializeControl()
+        {
+            _selectedLabel.DataBindings.Add(CommonString.ATTRIBUTE_TEXT, _presentationModel, nameof(_presentationModel.SelectedLabelText));
+            InitializeButton();
         }
 
         // 初始化 Button
@@ -55,8 +62,15 @@ namespace DrawingForm
             _presentationModel._modelChanged += HandleModelChanged;
         }
 
-        // 重置畫面按鈕狀態
+        // 重置畫面控制向狀態
         private void RefreshControlStatus()
+        {
+            RefreshButtonStatus();
+            _selectedLabel.DataBindings[0].ReadValue();
+        }
+
+        // 重置畫面按鈕狀態
+        private void RefreshButtonStatus()
         {
             _buttonClear.Enabled = _presentationModel.IsButtonClearEnabled;
             _buttonDrawEllipse.Enabled = _presentationModel.IsButtonDrawEllipseEnabled;
@@ -64,7 +78,6 @@ namespace DrawingForm
             _buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
             _buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
             _buttonChoose.Enabled = _presentationModel.IsButtonChooseEnabled;
-            _selectedLabel.Visible = _presentationModel.IsLabelSelectedVisible;
         }
 
         // 處理 清除按鈕點擊 事件

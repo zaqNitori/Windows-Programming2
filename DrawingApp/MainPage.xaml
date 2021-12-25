@@ -20,6 +20,7 @@
                 <CompositeTransform ScaleY="-1"/>
             </Canvas.RenderTransform>
         </Canvas>
+        <TextBlock x:Name="_selectedTextBlock" HorizontalAlignment="Left" Margin="60,120,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

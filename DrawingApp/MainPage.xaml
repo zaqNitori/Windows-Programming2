@@ -13,14 +13,15 @@
         <Button x:Name="_buttonRedo" Content="Redo" Margin="140,10,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
         <Button x:Name="_buttonDrawRectangle" Content="Rectangle" Margin="50,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
         <Button x:Name="_buttonDrawEllipse" Content="Ellipse" Margin="150,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
-        <Button x:Name="_buttonClear" Content="Clear" Margin="250,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
+        <Button x:Name="_buttonDrawLine" Content="Line" Margin="250,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
+        <Button x:Name="_buttonClear" Content="Clear" Margin="450,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
         <Button x:Name="_buttonChoose" Content="Choose" Margin="350,50,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
-        <Canvas x:Name="_canvas" Background="Gray" Margin="0,172,0,0" RenderTransformOrigin="0.5,0.5">
+        <Canvas x:Name="_canvas" Background="Gray" Margin="0,110,0,20" RenderTransformOrigin="0.5,0.5">
             <Canvas.RenderTransform>
                 <CompositeTransform ScaleY="-1"/>
             </Canvas.RenderTransform>
         </Canvas>
-        <TextBlock x:Name="_selectedTextBlock" HorizontalAlignment="Left" Margin="60,120,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="_selectedTextBlock" HorizontalAlignment="Left" Margin="250,110,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" />
 
     </Grid>
 </Page>

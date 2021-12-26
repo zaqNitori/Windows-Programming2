@@ -8,6 +8,8 @@ namespace DrawingModel
 {
     public class Common
     {
+        const int TWO = 2;
+
         //交換
         public static void Swap<T>(ref T template1, ref T template2)
         {
@@ -29,6 +31,12 @@ namespace DrawingModel
             {
                 Swap(ref y1, ref y2);
             }
+        }
+
+        // Get Center Value
+        public static double GetAverage(double x1, double x2)
+        {
+            return (x1 + x2) / TWO;
         }
     }
 }

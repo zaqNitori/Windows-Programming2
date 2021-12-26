@@ -7,6 +7,9 @@ namespace DrawingModel.Shape
         // 繪製圖形 - 外框
         void Draw(IGraphics graphics);
 
+        // 繪製圖形 - 外框
+        void Draw(IGraphics graphics, ShapeType shapeType);
+
         // 繪製圖形 - 填滿
         void Fill(IGraphics graphics);
 

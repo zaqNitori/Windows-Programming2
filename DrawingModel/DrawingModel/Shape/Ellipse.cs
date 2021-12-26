@@ -48,6 +48,13 @@ namespace DrawingModel.Shape
             graphics.DrawEllipse(X1, Y1, X2, Y2);
         }
 
+        // 繪圖 - 外框
+        public void Draw(IGraphics graphics, ShapeType shapeType)
+        {
+            if (shapeType.Equals(ShapeType.Ellipse))
+                this.Draw(graphics);
+        }
+
         // 繪圖 - 填滿
         public void Fill(IGraphics graphics)
         {
@@ -79,13 +86,13 @@ namespace DrawingModel.Shape
         //取得 X軸 中心點
         public double GetCenterPointX()
         {
-            return (X1 + X2) / 2;
+            return Common.GetAverage(X1, X2);
         }
 
         //取得 Y軸 中心點
         public double GetCenterPointY()
         {
-            return (Y1 + Y2) / 2;
+            return Common.GetAverage(Y1, Y2);
         }
 
         // 設定底部右邊

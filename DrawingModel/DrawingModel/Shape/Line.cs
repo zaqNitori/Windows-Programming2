@@ -52,15 +52,21 @@ namespace DrawingModel.Shape
             graphics.DrawLine(X1, Y1, X2, Y2);
         }
 
-        // 繪圖 - 填滿
-        public void Fill(IGraphics graphics)
+        // 繪圖 - 外框
+        public void Draw(IGraphics graphics, ShapeType shapeType)
         {
             double shapeX1 = Shape1.GetCenterPointX();
             double shapeY1 = Shape1.GetCenterPointY();
             double shapeX2 = Shape2.GetCenterPointX();
             double shapeY2 = Shape2.GetCenterPointY();
-            graphics.DrawLine(shapeX1, shapeY1, shapeX2, shapeY2);
-            //throw new NotImplementedException(nameof(Line) + CommonString.LINE_EXCEPTION);
+            if (shapeType.Equals(ShapeType.Line))
+                graphics.DrawLine(shapeX1, shapeY1, shapeX2, shapeY2);
+        }
+
+        // 繪圖 - 填滿
+        public void Fill(IGraphics graphics)
+        {
+            //throw new NotImplementedException(nameof(Line) + CommonString.FILL_EXCEPTION);
         }
 
         // 判斷是否 覆蓋 點
@@ -73,13 +79,13 @@ namespace DrawingModel.Shape
         //取得 X軸 中心點
         public double GetCenterPointX()
         {
-            return (X1 + X2) / 2;
+            return Common.GetAverage(X1, X2);
         }
 
         //取得 Y軸 中心點
         public double GetCenterPointY() 
         {
-            return (Y1 + Y2) / 2;
+            return Common.GetAverage(Y1, Y2);
         }
 
         // 設定底部右邊

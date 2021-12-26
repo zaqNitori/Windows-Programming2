@@ -17,14 +17,7 @@ namespace DrawingModel
             {
                 if (_shapeFactory.DrawShapeType != ShapeType.None)
                 {
-                    _firstPointX = pointX;
-                    _firstPointY = pointY;
-                    _isPressed = true;
-                    if (_shapeFactory.DrawShapeType.Equals(ShapeType.Line))
-                    {
-                        _isPressed = SelectShape(pointX, pointY, ref _selectedShape);
-                    }
-                    _hint = _shapeFactory.BuildShape(pointX, pointY);
+                    SetShapeAttribute(pointX, pointY);
                 }
                 else
                 {
@@ -32,6 +25,19 @@ namespace DrawingModel
                         NotifyModelChanged();
                 }
             }
+        }
+
+        // 暫存 Shape 所需變數
+        private void SetShapeAttribute(double pointX, double pointY)
+        {
+            _firstPointX = pointX;
+            _firstPointY = pointY;
+            _isPressed = true;
+            if (_shapeFactory.DrawShapeType.Equals(ShapeType.Line))
+            {
+                _isPressed = SelectShape(pointX, pointY, ref _selectedShape);
+            }
+            _hint = _shapeFactory.BuildShape(pointX, pointY);
         }
 
         // 判斷是否有選到圖形
@@ -78,7 +84,8 @@ namespace DrawingModel
                 IShape selectShape2 = null;
                 if (SelectShape(pointX, pointY, ref selectShape2))
                 {
-                    if (_selectedShape.Equals(selectShape2)) return;
+                    if (_selectedShape.Equals(selectShape2)) 
+                        return;
                     shape.SetConnectedShape(_selectedShape, selectShape2);
                 }
                 else

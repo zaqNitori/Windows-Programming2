@@ -70,6 +70,8 @@ namespace DrawingModel
         {
             graphics.ClearAll();
             foreach (var shape in _shapes)
+                shape.Draw(graphics, ShapeType.Line);
+            foreach (var shape in _shapes)
                 shape.Fill(graphics);
             if (_isPressed)
                 _hint.Draw(graphics);

@@ -19,5 +19,10 @@ namespace DrawingModel
 
         public const string SELECTED_INFO = "Selected : ";
         public const string ATTRIBUTE_TEXT = "Text";
+
+        public const string LINE_EXCEPTION = "do not support Fill function!!";
+        public const string IS_POINT_COVERD_NOT_IMPLEMENT = "do not support IsPointCoverd function!!";
+        public const string SET_CONNECTED_SHAPE_NOT_IMPLEMENT = "do not support SetConnectedShape function!!";
+
     }
 }

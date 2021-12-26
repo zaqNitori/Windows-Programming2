@@ -38,12 +38,13 @@ namespace DrawingForm
             this._buttonRedo = new System.Windows.Forms.ToolStripButton();
             this._buttonChoose = new System.Windows.Forms.Button();
             this._selectedLabel = new System.Windows.Forms.Label();
+            this._buttonDrawLine = new System.Windows.Forms.Button();
             this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _buttonDrawRectangle
             // 
-            this._buttonDrawRectangle.Location = new System.Drawing.Point(92, 49);
+            this._buttonDrawRectangle.Location = new System.Drawing.Point(42, 49);
             this._buttonDrawRectangle.Name = "_buttonDrawRectangle";
             this._buttonDrawRectangle.Size = new System.Drawing.Size(100, 50);
             this._buttonDrawRectangle.TabIndex = 0;
@@ -52,7 +53,7 @@ namespace DrawingForm
             // 
             // _buttonDrawEllipse
             // 
-            this._buttonDrawEllipse.Location = new System.Drawing.Point(240, 49);
+            this._buttonDrawEllipse.Location = new System.Drawing.Point(160, 49);
             this._buttonDrawEllipse.Name = "_buttonDrawEllipse";
             this._buttonDrawEllipse.Size = new System.Drawing.Size(100, 50);
             this._buttonDrawEllipse.TabIndex = 0;
@@ -61,7 +62,7 @@ namespace DrawingForm
             // 
             // _buttonClear
             // 
-            this._buttonClear.Location = new System.Drawing.Point(386, 49);
+            this._buttonClear.Location = new System.Drawing.Point(406, 49);
             this._buttonClear.Name = "_buttonClear";
             this._buttonClear.Size = new System.Drawing.Size(100, 50);
             this._buttonClear.TabIndex = 0;
@@ -76,7 +77,7 @@ namespace DrawingForm
             this._buttonRedo});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(800, 27);
+            this._toolStrip.Size = new System.Drawing.Size(800, 31);
             this._toolStrip.TabIndex = 1;
             this._toolStrip.Text = "toolStrip1";
             // 
@@ -87,7 +88,7 @@ namespace DrawingForm
             this._buttonUndo.ForeColor = System.Drawing.SystemColors.ControlText;
             this._buttonUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._buttonUndo.Name = "_buttonUndo";
-            this._buttonUndo.Size = new System.Drawing.Size(49, 28);
+            this._buttonUndo.Size = new System.Drawing.Size(49, 24);
             this._buttonUndo.Text = "Undo";
             // 
             // _buttonRedo
@@ -96,7 +97,7 @@ namespace DrawingForm
             this._buttonRedo.Image = ((System.Drawing.Image)(resources.GetObject("_buttonRedo.Image")));
             this._buttonRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._buttonRedo.Name = "_buttonRedo";
-            this._buttonRedo.Size = new System.Drawing.Size(48, 24);
+            this._buttonRedo.Size = new System.Drawing.Size(48, 28);
             this._buttonRedo.Text = "Redo";
             // 
             // _buttonChoose
@@ -114,16 +115,27 @@ namespace DrawingForm
             this._selectedLabel.BackColor = System.Drawing.SystemColors.Control;
             this._selectedLabel.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this._selectedLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._selectedLabel.Location = new System.Drawing.Point(12, 421);
+            this._selectedLabel.Location = new System.Drawing.Point(402, 421);
             this._selectedLabel.Name = "_selectedLabel";
-            this._selectedLabel.Size = new System.Drawing.Size(0, 20);
+            this._selectedLabel.Size = new System.Drawing.Size(66, 20);
             this._selectedLabel.TabIndex = 3;
+            this._selectedLabel.Text = "ImHere";
+            // 
+            // _buttonDrawLine
+            // 
+            this._buttonDrawLine.Location = new System.Drawing.Point(281, 49);
+            this._buttonDrawLine.Name = "_buttonDrawLine";
+            this._buttonDrawLine.Size = new System.Drawing.Size(100, 50);
+            this._buttonDrawLine.TabIndex = 4;
+            this._buttonDrawLine.Text = "Line";
+            this._buttonDrawLine.UseVisualStyleBackColor = true;
             // 
             // DrawingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._buttonDrawLine);
             this.Controls.Add(this._selectedLabel);
             this.Controls.Add(this._buttonChoose);
             this.Controls.Add(this._toolStrip);
@@ -149,5 +161,6 @@ namespace DrawingForm
         private System.Windows.Forms.ToolStripButton _buttonRedo;
         private System.Windows.Forms.Button _buttonChoose;
         private System.Windows.Forms.Label _selectedLabel;
+        private System.Windows.Forms.Button _buttonDrawLine;
     }
 }

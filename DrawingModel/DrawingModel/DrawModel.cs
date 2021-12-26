@@ -4,7 +4,7 @@ using DrawingModel.Command;
 
 namespace DrawingModel
 {
-    public class DrawModel
+    public partial class DrawModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
@@ -44,7 +44,7 @@ namespace DrawingModel
         }
 
         // 圖形選取資訊
-        public string GetSelectedInformation()
+        public string GetSelectedString()
         {
             return _isSelected ? CommonString.SELECTED_INFO + _selectedShape.ToString() : string.Empty;
         }
@@ -53,65 +53,6 @@ namespace DrawingModel
         public void SetShapeType(ShapeType shapeType)
         {
             _shapeFactory.DrawShapeType = shapeType;
-        }
-
-        // 按下滑鼠
-        public void HandlePointerPressed(double pointX, double pointY)
-        {
-            if (pointX > 0 && pointY > 0)
-            {
-                if (_shapeFactory.DrawShapeType != ShapeType.None) 
-                {
-                    _firstPointX = pointX;
-                    _firstPointY = pointY;
-                    _hint = _shapeFactory.BuildShape(pointX, pointY);
-                    _isPressed = true;
-                }
-                else
-                {
-                    _selectedShape = SelectShape(pointX, pointY);
-                    if (_isSelected)
-                        NotifyModelChanged();
-                }
-            }
-        }
-
-        // 判斷是否有選到圖形
-        private IShape SelectShape(double pointX, double pointY)
-        {
-            for (var i = _shapes.Count - 1; i >= 0; i--)
-            {
-                if (_shapes[i].IsPointCoverd(pointX, pointY))
-                {
-                    _isSelected = true;
-                    return _shapes[i];
-                }
-            }
-            _isSelected = false;
-            return null;
-        }
-
-        // 滑鼠移動
-        public void HandlePointerMoved(double pointX, double pointY)
-        {
-            if (_isPressed)
-            {
-                _hint.SetRight(pointX);
-                _hint.SetBottom(pointY);
-                NotifyModelChanged();
-            }
-        }
-
-        // 滑鼠放開
-        public void HandlePointerReleased(double pointX, double pointY)
-        {
-            if (_isPressed)
-            {
-                _isPressed = false;
-                IShape shape = _shapeFactory.BuildShape(_firstPointX, _firstPointY, pointX, pointY);
-                _commandManager.Execute(new DrawCommand(this, shape));
-                NotifyModelChanged();
-            }
         }
 
         // 清空畫面
@@ -134,18 +75,6 @@ namespace DrawingModel
                 _hint.Draw(graphics);
             if (_isSelected)
                 _selectedShape.Draw(graphics);
-        }
-
-        //Handle Redo Event
-        public void HandleRedo()
-        {
-            _commandManager.Redo();
-        }
-
-        //Handle Undo Event
-        public void HandleUndo()
-        {
-            _commandManager.Undo();
         }
 
         //Insert shape

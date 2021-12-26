@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DrawingModel.Shape
 {
-    public class Rectangle : IShape
+    public class Line : IShape
     {
-
-        public Rectangle(double x1, double y1, double x2, double y2)
+        public Line(double x1, double y1, double x2, double y2)
         {
-            Common.ResetMarginPoint(ref x1, ref y1, ref x2, ref y2);
             Y1 = y1;
             X1 = x1;
             Y2 = y2;
             X2 = x2;
-            IsChecked = false;
         }
 
         public double X1
@@ -36,7 +36,12 @@ namespace DrawingModel.Shape
             get; set;
         }
 
-        public bool IsChecked
+        public IShape Shape1
+        {
+            get; set;
+        }
+
+        public IShape Shape2
         {
             get; set;
         }
@@ -44,35 +49,25 @@ namespace DrawingModel.Shape
         // 繪圖 - 外框
         public void Draw(IGraphics graphics)
         {
-            graphics.DrawRectangle(X1, Y1, X2, Y2);
+            graphics.DrawLine(X1, Y1, X2, Y2);
         }
 
         // 繪圖 - 填滿
         public void Fill(IGraphics graphics)
         {
-            graphics.FillRectangle(X1, Y1, X2, Y2);
+            double shapeX1 = Shape1.GetCenterPointX();
+            double shapeY1 = Shape1.GetCenterPointY();
+            double shapeX2 = Shape2.GetCenterPointX();
+            double shapeY2 = Shape2.GetCenterPointY();
+            graphics.DrawLine(shapeX1, shapeY1, shapeX2, shapeY2);
+            //throw new NotImplementedException(nameof(Line) + CommonString.LINE_EXCEPTION);
         }
 
         // 判斷是否 覆蓋 點
         public bool IsPointCoverd(double x1, double y1)
         {
-            if (x1 >= X1 && x1 <= X2
-                && y1 >= Y1 && y1 <= Y2)
-            {
-                IsChecked = true;
-                return true;
-            }
             return false;
-        }
-
-        // 格式化字串
-        public override string ToString()
-        {
-            return nameof(Rectangle) + CommonString.FRONT_BRACKET_SMALL
-                + ((int)X1).ToString() + CommonString.COMMA + CommonString.SPACE
-                + ((int)Y1).ToString() + CommonString.COMMA + CommonString.SPACE
-                + ((int)X2).ToString() + CommonString.COMMA + CommonString.SPACE
-                + ((int)Y2).ToString() + CommonString.BACK_BRACKET_SMALL;
+            //throw new NotImplementedException(nameof(Line) + CommonString.IS_POINT_COVERD_NOT_IMPLEMENT);
         }
 
         //取得 X軸 中心點
@@ -82,7 +77,7 @@ namespace DrawingModel.Shape
         }
 
         //取得 Y軸 中心點
-        public double GetCenterPointY()
+        public double GetCenterPointY() 
         {
             return (Y1 + Y2) / 2;
         }
@@ -97,7 +92,8 @@ namespace DrawingModel.Shape
         // 設定連接的圖形
         public void SetConnectedShape(IShape shape1, IShape shape2)
         {
-            throw new NotImplementedException(nameof(Rectangle) + CommonString.SET_CONNECTED_SHAPE_NOT_IMPLEMENT);
+            Shape1 = shape1;
+            Shape2 = shape2;
         }
 
     }

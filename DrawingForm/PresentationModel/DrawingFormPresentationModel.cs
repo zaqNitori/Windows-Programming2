@@ -14,6 +14,7 @@ namespace DrawingForm.PresentationModel
         {
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
+            _model._stateChanged += HandleStateChanged;
             IsButtonDrawLineEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
 
@@ -119,5 +120,10 @@ namespace DrawingForm.PresentationModel
                 _modelChanged();
         }
 
+        // 動作狀態改變
+        void HandleStateChanged()
+        {
+            IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = IsButtonDrawLineEnabled = true;
+        }
     }
 }

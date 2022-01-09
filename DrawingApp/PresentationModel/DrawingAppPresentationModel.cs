@@ -21,6 +21,7 @@ namespace DrawingApp.PresentationModel
             this._model = model;
             _iGraphics = new DrawingAppGraphicsAdaptor(canvas);
             _model._modelChanged += NotifyModelChanged;
+            _model._stateChanged += HandleStateChanged;
             IsButtonDrawLineEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
 
@@ -122,6 +123,12 @@ namespace DrawingApp.PresentationModel
         {
             if (_modelChanged != null)
                 _modelChanged();
+        }
+
+        // 動作狀態改變
+        void HandleStateChanged()
+        {
+            IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = IsButtonDrawLineEnabled = true;
         }
 
     }

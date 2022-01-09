@@ -36,7 +36,6 @@ namespace DrawingForm
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._buttonUndo = new System.Windows.Forms.ToolStripButton();
             this._buttonRedo = new System.Windows.Forms.ToolStripButton();
-            this._buttonChoose = new System.Windows.Forms.Button();
             this._selectedLabel = new System.Windows.Forms.Label();
             this._buttonDrawLine = new System.Windows.Forms.Button();
             this._toolStrip.SuspendLayout();
@@ -77,7 +76,7 @@ namespace DrawingForm
             this._buttonRedo});
             this._toolStrip.Location = new System.Drawing.Point(0, 0);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(800, 31);
+            this._toolStrip.Size = new System.Drawing.Size(800, 27);
             this._toolStrip.TabIndex = 1;
             this._toolStrip.Text = "toolStrip1";
             // 
@@ -97,17 +96,8 @@ namespace DrawingForm
             this._buttonRedo.Image = ((System.Drawing.Image)(resources.GetObject("_buttonRedo.Image")));
             this._buttonRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._buttonRedo.Name = "_buttonRedo";
-            this._buttonRedo.Size = new System.Drawing.Size(48, 28);
+            this._buttonRedo.Size = new System.Drawing.Size(48, 24);
             this._buttonRedo.Text = "Redo";
-            // 
-            // _buttonChoose
-            // 
-            this._buttonChoose.Location = new System.Drawing.Point(527, 49);
-            this._buttonChoose.Name = "_buttonChoose";
-            this._buttonChoose.Size = new System.Drawing.Size(100, 50);
-            this._buttonChoose.TabIndex = 2;
-            this._buttonChoose.Text = "Choose";
-            this._buttonChoose.UseVisualStyleBackColor = true;
             // 
             // _selectedLabel
             // 
@@ -137,7 +127,6 @@ namespace DrawingForm
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this._buttonDrawLine);
             this.Controls.Add(this._selectedLabel);
-            this.Controls.Add(this._buttonChoose);
             this.Controls.Add(this._toolStrip);
             this.Controls.Add(this._buttonClear);
             this.Controls.Add(this._buttonDrawEllipse);
@@ -159,7 +148,6 @@ namespace DrawingForm
         private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _buttonUndo;
         private System.Windows.Forms.ToolStripButton _buttonRedo;
-        private System.Windows.Forms.Button _buttonChoose;
         private System.Windows.Forms.Label _selectedLabel;
         private System.Windows.Forms.Button _buttonDrawLine;
     }

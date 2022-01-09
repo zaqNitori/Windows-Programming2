@@ -71,6 +71,8 @@ namespace DrawingModel
             {
                 _isPressed = false;
                 ExecuteShape(pointX, pointY);
+                SetShapeType(ShapeType.None);
+                NotifyStateChanged();
                 NotifyModelChanged();
             }
         }

@@ -45,11 +45,10 @@ namespace DrawingForm
         // 初始化 Button
         private void InitializeButton()
         {
-            _buttonDrawLine.Top = _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _buttonChoose.Top = _toolStrip.Bottom;
+            _buttonDrawLine.Top = _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _toolStrip.Bottom;
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
-            _buttonChoose.Click += HandleChooseButtonClick;
             _buttonDrawLine.Click += HandleDrawLineButtonClick;
             _buttonRedo.Click += HandleRedo;
             _buttonUndo.Click += HandleUndo;
@@ -78,7 +77,6 @@ namespace DrawingForm
             _buttonDrawRectangle.Enabled = _presentationModel.IsButtonDrawRectangleEnabled;
             _buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
             _buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
-            _buttonChoose.Enabled = _presentationModel.IsButtonChooseEnabled;
             _buttonDrawLine.Enabled = _presentationModel.IsButtonDrawLineEnabled;
         }
 
@@ -88,7 +86,6 @@ namespace DrawingForm
             _presentationModel.Clear();
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
-            _presentationModel.IsButtonChooseEnabled = true;
             RefreshControlStatus();
         }
 
@@ -99,18 +96,6 @@ namespace DrawingForm
             _presentationModel.IsButtonDrawLineEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
-            _presentationModel.IsButtonChooseEnabled = true;
-            RefreshControlStatus();
-        }
-
-        // 處理 Chooses按鈕點擊 事件
-        public void HandleChooseButtonClick(object sender, EventArgs e)
-        {
-            _presentationModel.SetDrawShapeType(ShapeType.None);
-            _presentationModel.IsButtonDrawLineEnabled = true;
-            _presentationModel.IsButtonDrawEllipseEnabled = true;
-            _presentationModel.IsButtonDrawRectangleEnabled = true;
-            _presentationModel.IsButtonChooseEnabled = false;
             RefreshControlStatus();
         }
 
@@ -121,7 +106,6 @@ namespace DrawingForm
             _presentationModel.IsButtonDrawLineEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
-            _presentationModel.IsButtonChooseEnabled = true;
             RefreshControlStatus();
         }
 
@@ -132,7 +116,6 @@ namespace DrawingForm
             _presentationModel.IsButtonDrawLineEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
-            _presentationModel.IsButtonChooseEnabled = true;
             RefreshControlStatus();
         }
 

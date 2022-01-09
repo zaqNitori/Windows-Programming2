@@ -21,7 +21,7 @@ namespace DrawingApp.PresentationModel
             this._model = model;
             _iGraphics = new DrawingAppGraphicsAdaptor(canvas);
             _model._modelChanged += NotifyModelChanged;
-            IsButtonDrawLineEnabled = IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+            IsButtonDrawLineEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
 
         public string SelectedLabelText
@@ -33,11 +33,6 @@ namespace DrawingApp.PresentationModel
         }
 
         public bool IsButtonDrawLineEnabled
-        {
-            get; set;
-        }
-
-        public bool IsButtonChooseEnabled
         {
             get; set;
         }

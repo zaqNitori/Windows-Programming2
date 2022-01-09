@@ -42,13 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\DrawCommand.cs" />
+    <Compile Include="Command\DrawCommandManager.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="CommonString.cs" />
     <Compile Include="DrawModel.cs" />
+    <Compile Include="DrawModel.HandleViewAction.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="Shape\Ellipse.cs" />
     <Compile Include="Shape\Interface\Ishape.cs" />
+    <Compile Include="Shape\Line.cs" />
     <Compile Include="Shape\Rectangle.cs" />
     <Compile Include="Shape\ShapeType.cs" />
   </ItemGroup>

@@ -14,7 +14,25 @@ namespace DrawingForm.PresentationModel
         {
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
-            IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+            IsButtonDrawLineEnabled = IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+        }
+
+        public string SelectedLabelText
+        {
+            get
+            {
+                return _model.GetSelectedString();
+            }
+        }
+
+        public bool IsButtonDrawLineEnabled
+        {
+            get; set;
+        }
+
+        public bool IsButtonChooseEnabled
+        {
+            get; set;
         }
 
         public bool IsButtonClearEnabled
@@ -30,6 +48,22 @@ namespace DrawingForm.PresentationModel
         public bool IsButtonDrawEllipseEnabled
         {
             get; set;
+        }
+
+        public bool IsButtonUndoEnabled
+        {
+            get
+            {
+                return _model.IsButtonUndoEnabled;
+            }
+        }
+
+        public bool IsButtonRedoEnabled
+        {
+            get
+            {
+                return _model.IsButtonRedoEnabled;
+            }
         }
 
         // 繪製
@@ -69,6 +103,18 @@ namespace DrawingForm.PresentationModel
         public void HandlePointerMoved(int x1, int y1)
         {
             _model.HandlePointerMoved(x1, y1);
+        }
+
+        //Handle Redo Event
+        public void HandleRedo()
+        {
+            _model.HandleRedo();
+        }
+
+        //Handle Undo Event
+        public void HandleUndo()
+        {
+            _model.HandleUndo();
         }
 
         // 同步通知

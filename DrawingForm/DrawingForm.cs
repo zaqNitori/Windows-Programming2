@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DrawingModel;
 using DrawingForm.PresentationModel;
 using DrawingModel.Shape;
+using System.Reflection;
 
 namespace DrawingForm
 {
@@ -15,9 +16,10 @@ namespace DrawingForm
         public DrawingForm()
         {
             InitializeComponent();
-            InitializeCanvas();
-            InitializeButton();
             InitializePresentationModel();
+            InitializeCanvas();
+            InitializeControl();
+            RefreshControlStatus();
         }
 
         // 初始化 畫布
@@ -33,13 +35,24 @@ namespace DrawingForm
             Controls.Add(_canvas);
         }
 
+        // 初始化 控制向
+        private void InitializeControl()
+        {
+            _selectedLabel.DataBindings.Add(CommonString.ATTRIBUTE_TEXT, _presentationModel, nameof(_presentationModel.SelectedLabelText));
+            InitializeButton();
+        }
+
         // 初始化 Button
         private void InitializeButton()
         {
-            _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = 0;
+            _buttonDrawLine.Top = _buttonClear.Top = _buttonDrawEllipse.Top = _buttonDrawRectangle.Top = _buttonChoose.Top = _toolStrip.Bottom;
             _buttonClear.Click += HandleClearButtonClick;
             _buttonDrawEllipse.Click += HandleDrawEllipseButtonClick;
             _buttonDrawRectangle.Click += HandleDrawRectangleButtonClick;
+            _buttonChoose.Click += HandleChooseButtonClick;
+            _buttonDrawLine.Click += HandleDrawLineButtonClick;
+            _buttonRedo.Click += HandleRedo;
+            _buttonUndo.Click += HandleUndo;
         }
 
         // 初始化 PresentationModel
@@ -50,39 +63,77 @@ namespace DrawingForm
             _presentationModel._modelChanged += HandleModelChanged;
         }
 
+        // 重置畫面控制向狀態
+        private void RefreshControlStatus()
+        {
+            RefreshButtonStatus();
+            _selectedLabel.DataBindings[0].ReadValue();
+        }
+
         // 重置畫面按鈕狀態
         private void RefreshButtonStatus()
         {
             _buttonClear.Enabled = _presentationModel.IsButtonClearEnabled;
             _buttonDrawEllipse.Enabled = _presentationModel.IsButtonDrawEllipseEnabled;
             _buttonDrawRectangle.Enabled = _presentationModel.IsButtonDrawRectangleEnabled;
+            _buttonRedo.Enabled = _presentationModel.IsButtonRedoEnabled;
+            _buttonUndo.Enabled = _presentationModel.IsButtonUndoEnabled;
+            _buttonChoose.Enabled = _presentationModel.IsButtonChooseEnabled;
+            _buttonDrawLine.Enabled = _presentationModel.IsButtonDrawLineEnabled;
         }
 
-        // 處理 清除按鈕點擊 事件
+        // 處理 Clear按鈕點擊 事件
         public void HandleClearButtonClick(object sender, EventArgs e)
         {
             _presentationModel.Clear();
             _presentationModel.IsButtonDrawEllipseEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
-            RefreshButtonStatus();
+            _presentationModel.IsButtonChooseEnabled = true;
+            RefreshControlStatus();
         }
 
-        // 處理 清除按鈕點擊 事件
+        // 處理 Line按鈕點擊 事件
+        public void HandleDrawLineButtonClick(object sender, EventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.Line);
+            _presentationModel.IsButtonDrawLineEnabled = false;
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = true;
+            RefreshControlStatus();
+        }
+
+        // 處理 Chooses按鈕點擊 事件
+        public void HandleChooseButtonClick(object sender, EventArgs e)
+        {
+            _presentationModel.SetDrawShapeType(ShapeType.None);
+            _presentationModel.IsButtonDrawLineEnabled = true;
+            _presentationModel.IsButtonDrawEllipseEnabled = true;
+            _presentationModel.IsButtonDrawRectangleEnabled = true;
+            _presentationModel.IsButtonChooseEnabled = false;
+            RefreshControlStatus();
+        }
+
+        // 處理 Rectangle按鈕點擊 事件
         public void HandleDrawRectangleButtonClick(object sender, EventArgs e)
         {
             _presentationModel.SetDrawShapeType(ShapeType.Rectangle);
+            _presentationModel.IsButtonDrawLineEnabled = true;
             _presentationModel.IsButtonDrawRectangleEnabled = false;
             _presentationModel.IsButtonDrawEllipseEnabled = true;
-            RefreshButtonStatus();
+            _presentationModel.IsButtonChooseEnabled = true;
+            RefreshControlStatus();
         }
 
-        // 處理 清除按鈕點擊 事件
+        // 處理 Ellipse按鈕點擊 事件
         public void HandleDrawEllipseButtonClick(object sender, EventArgs e)
         {
             _presentationModel.SetDrawShapeType(ShapeType.Ellipse);
+            _presentationModel.IsButtonDrawLineEnabled = true;
             _presentationModel.IsButtonDrawEllipseEnabled = false;
             _presentationModel.IsButtonDrawRectangleEnabled = true;
-            RefreshButtonStatus();
+            _presentationModel.IsButtonChooseEnabled = true;
+            RefreshControlStatus();
         }
 
         // 處理畫布 滑鼠點擊事件
@@ -109,10 +160,25 @@ namespace DrawingForm
             _presentationModel.Draw(e.Graphics);
         }
 
+        //Handle Redo Event
+        public void HandleRedo(object sender, EventArgs e)
+        {
+            _presentationModel.HandleRedo();
+            HandleModelChanged();
+        }
+
+        //Handle Undo Event
+        public void HandleUndo(object sender, EventArgs e)
+        {
+            _presentationModel.HandleUndo();
+            HandleModelChanged();
+        }
+
         // 處理 同步通知
         public void HandleModelChanged()
         {
             Invalidate(true);
+            RefreshControlStatus();
         }
 
     }

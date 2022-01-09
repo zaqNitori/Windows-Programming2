@@ -253,12 +253,12 @@
             <Smell>
               <Id>5</Id>
               <SmellType>Lack of comments(缺乏註解)</SmellType>
-              <HashCode>54 DrawingApp.MainPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</HashCode>
+              <HashCode>52 DrawingApp.MainPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DrawingApp</Project>
               <File>MainPage.g.i.cs</File>
-              <Line>54</Line>
+              <Line>52</Line>
               <StartLine>0</StartLine>
               <StartCol>0</StartCol>
               <EndLine>0</EndLine>
@@ -431,7 +431,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>2106</ProductionLoc>
+          <ProductionLoc>2074</ProductionLoc>
           <TestLoc>0</TestLoc>
         </CodeReview>
       </Data>

@@ -15,6 +15,7 @@ namespace DrawingModel
         double _firstPointY;
         bool _isPressed = false;
         bool _isSelected = false;
+        bool _isMoved = false;
 
         DrawCommandManager _commandManager;
         ShapeFactory _shapeFactory;

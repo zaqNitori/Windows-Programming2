@@ -14,7 +14,8 @@ namespace DrawingForm.PresentationModel
         {
             this._model = model;
             _model._modelChanged += NotifyModelChanged;
-            IsButtonDrawLineEnabled = IsButtonChooseEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
+            _model._stateChanged += HandleStateChanged;
+            IsButtonDrawLineEnabled = IsButtonClearEnabled = IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = true;
         }
 
         public string SelectedLabelText
@@ -26,11 +27,6 @@ namespace DrawingForm.PresentationModel
         }
 
         public bool IsButtonDrawLineEnabled
-        {
-            get; set;
-        }
-
-        public bool IsButtonChooseEnabled
         {
             get; set;
         }
@@ -124,5 +120,10 @@ namespace DrawingForm.PresentationModel
                 _modelChanged();
         }
 
+        // 動作狀態改變
+        void HandleStateChanged()
+        {
+            IsButtonDrawEllipseEnabled = IsButtonDrawRectangleEnabled = IsButtonDrawLineEnabled = true;
+        }
     }
 }

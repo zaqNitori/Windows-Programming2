@@ -22,9 +22,13 @@ namespace DrawingModel
                 else
                 {
                     if ((_isSelected = SelectShape(pointX, pointY, ref _selectedShape)) == true)
-                        NotifyModelChanged();
+                    {
+                        SetMoveAttribute(pointX, pointY);
+                    }
                 }
+                return;
             }
+            _isMoved = false;
         }
 
         // 暫存 Shape 所需變數
@@ -38,6 +42,15 @@ namespace DrawingModel
                 _isPressed = SelectShape(pointX, pointY, ref _selectedShape);
             }
             _hint = _shapeFactory.BuildShape(pointX, pointY);
+        }
+
+        // 設定Move相關變數
+        private void SetMoveAttribute(double pointX, double pointY)
+        {
+            _isMoved = true;
+            _firstPointX = pointX;
+            _firstPointY = pointY;
+            NotifyModelChanged();
         }
 
         // 判斷是否有選到圖形
@@ -62,6 +75,13 @@ namespace DrawingModel
                 _hint.SetBottomRight(pointX, pointY);
                 NotifyModelChanged();
             }
+            else if (_isMoved)
+            {
+                _selectedShape.SetShiftAmount(pointX - _firstPointX, pointY - _firstPointY);
+                _firstPointX = pointX;
+                _firstPointY = pointY;
+                NotifyModelChanged();
+            }
         }
 
         // 滑鼠放開
@@ -71,8 +91,15 @@ namespace DrawingModel
             {
                 _isPressed = false;
                 ExecuteShape(pointX, pointY);
-                NotifyModelChanged();
             }
+            else if (_isMoved)
+            {
+                _isMoved = false;
+                _selectedShape.SetShiftAmount(pointX - _firstPointX, pointY - _firstPointY);
+            }
+            SetShapeType(ShapeType.None);
+            NotifyStateChanged();
+            NotifyModelChanged();
         }
 
         // 將 Shape 加入 繪製List

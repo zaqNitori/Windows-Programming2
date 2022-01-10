@@ -8,11 +8,14 @@ namespace DrawingModel
     {
         public event ModelChangedEventHandler _modelChanged;
         public delegate void ModelChangedEventHandler();
+        public event StateChangedEventHandler _stateChanged;
+        public delegate void StateChangedEventHandler();
 
         double _firstPointX;
         double _firstPointY;
         bool _isPressed = false;
         bool _isSelected = false;
+        bool _isMoved = false;
 
         DrawCommandManager _commandManager;
         ShapeFactory _shapeFactory;
@@ -102,6 +105,13 @@ namespace DrawingModel
         {
             if (_modelChanged != null)
                 _modelChanged();
+        }
+
+        // 同步通知 - 動作狀態
+        void NotifyStateChanged()
+        {
+            if (_stateChanged != null)
+                _stateChanged();
         }
     }
 

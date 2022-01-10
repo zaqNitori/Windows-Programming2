@@ -19,6 +19,12 @@ namespace DrawingModel.Shape
         // 設定底部 右邊
         void SetBottomRight(double x2, double y2);
 
+        // 設定top left
+        void SetTopLeft(double x1, double y1);
+
+        // 設定 shift point
+        void SetShiftAmount(double pointX, double pointY);
+
         // 設定連接的圖形
         void SetConnectedShape(IShape shape1, IShape shape2);
 

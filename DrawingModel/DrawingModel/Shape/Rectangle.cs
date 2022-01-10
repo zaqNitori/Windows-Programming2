@@ -101,6 +101,22 @@ namespace DrawingModel.Shape
             Y2 = y2;
         }
 
+        // 設定top left
+        public void SetTopLeft(double x1, double y1)
+        {
+            X1 = x1;
+            Y1 = y1;
+        }
+
+        // 設定 shift point
+        public void SetShiftAmount(double pointX, double pointY)
+        {
+            X1 += pointX;
+            X2 += pointX;
+            Y1 += pointY;
+            Y2 += pointY;
+        }
+
         // 設定連接的圖形
         public void SetConnectedShape(IShape shape1, IShape shape2)
         {
